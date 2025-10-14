@@ -44,32 +44,12 @@ function renderHome() {
           <a href="#interactive" class="interactive-link">Interactive mode</a>
         </div>
 
-        <div class="card-size-controls" role="group" aria-label="Card size">
-          <button class="size-btn size-down" aria-label="Decrease card size">−</button>
-          <input type="range" min="0.8" max="1.4" step="0.02" value="1" class="size-slider" aria-label="Card size slider" />
-          <button class="size-btn size-up" aria-label="Increase card size">+</button>
-        </div>
-
         <div class="projects-grid">
           ${cardHtml}
         </div>
       </div>
     </main>
   `
-
-  const slider = document.querySelector('.size-slider')
-  const down = document.querySelector('.size-down')
-  const up = document.querySelector('.size-up')
-
-  const clamp = (v) => Math.max(0.8, Math.min(1.4, v))
-  const setScale = (v) => {
-    document.documentElement.style.setProperty('--card-scale', String(v))
-    if (slider) slider.value = String(v)
-  }
-
-  slider?.addEventListener('input', (e) => setScale(parseFloat(e.target.value)))
-  down?.addEventListener('click', () => setScale(clamp(parseFloat(slider.value) - 0.05)))
-  up?.addEventListener('click', () => setScale(clamp(parseFloat(slider.value) + 0.05)))
 }
 
 function renderCase(slug) {
