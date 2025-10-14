@@ -139,6 +139,14 @@ html, body {
   z-index: 10;
 }
 
+/* Hover trigger overlay similar to Framer's mouse-enter-trigger */
+.mouse-enter-trigger {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 50% 0;
+  pointer-events: none;
+}
+
 .card-inner {
   width: 100%;
   height: 100%;
@@ -155,7 +163,7 @@ html, body {
   width: 100%;
   height: 100%;
   border-radius: 16px;
-  box-shadow: 0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15), 
+  box-shadow: 0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15),
               0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30);
   overflow: hidden;
   position: relative;
@@ -163,6 +171,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: transform;
 }
 
 .project-card:hover .card-background {
