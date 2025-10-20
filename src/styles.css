@@ -112,22 +112,19 @@ html, body {
 }
 
 .card-link {
-  flex: 1;
-  min-width: 0;
   text-decoration: none;
   color: inherit;
-  transition: flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-link:hover {
-  flex: 2.5;
 }
 
 .project-card {
   cursor: pointer;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  width: 100%;
-  height: clamp(250px, 28vw, 400px);
+  width: 180px;
+  height: 300px;
+  transition: width 0.4s ease-in-out;
+}
+
+.card-link:hover .project-card {
+  width: 360px;
 }
 
 .mouse-enter-trigger {
