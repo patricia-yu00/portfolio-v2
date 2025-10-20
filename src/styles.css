@@ -226,6 +226,12 @@ html, body {
   top: clamp(11px, 1.8vw, 17px);
 }
 
+.card-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .laptop-img,
 .dashboard-screen,
 .graph-img {
