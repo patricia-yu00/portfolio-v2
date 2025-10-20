@@ -172,7 +172,6 @@ html, body {
 
 .pattern-card {
   background: #1A2267;
-  padding: clamp(0.5rem, 1.5vw, 1rem);
 }
 
 .cube-pattern {
