@@ -116,16 +116,16 @@ html, body {
 .card-link {
   text-decoration: none;
   color: inherit;
-  flex: 0 0 195px;
+  flex: 1 1 0;
   transition: flex 0.4s ease-in-out;
 }
 
 .card-link.expanded {
-  flex: 0 0 283px;
+  flex: 1.451 1 0;
 }
 
 .card-link.compressed {
-  flex: 0 0 177px;
+  flex: 0.908 1 0;
 }
 
 .project-card {
