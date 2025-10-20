@@ -106,27 +106,28 @@ html, body {
 .projects-grid {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap;
   align-items: flex-end;
   padding: 2rem 0;
-  perspective: 2000px;
+  width: 100%;
+}
+
+.card-link {
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  transition: flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-link:hover {
+  flex: 2.5;
 }
 
 .project-card {
-  flex-shrink: 0;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transform-style: preserve-3d;
-  transform-origin: center center;
-  width: clamp(125px, 13.5vw, 195px);
-  height: clamp(176px, 19.2vw, 276px);
-}
-
-
-
-.project-card:hover {
-  transform: scale(1.35) translateY(-12px) rotateX(2deg) rotateY(-2deg);
-  z-index: 10;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  height: clamp(250px, 28vw, 400px);
 }
 
 /* Hover trigger overlay similar to Framer's mouse-enter-trigger */
