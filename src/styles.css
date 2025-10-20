@@ -351,13 +351,28 @@ html, body {
 }
 
 @media (max-width: 1200px) {
+  .projects-grid {
+    height: 390px;
+  }
+
+  .card-link {
+    flex: 0 0 170px;
+  }
+
+  .card-link.expanded {
+    flex: 0 0 265px;
+  }
+
+  .card-link.compressed {
+    flex: 0 0 160px;
+  }
+
   .project-card {
-    width: 170px;
     height: 290px;
   }
 
-  .card-link:hover .project-card {
-    width: 340px;
+  .card-link.expanded .project-card {
+    height: 390px;
   }
 }
 
