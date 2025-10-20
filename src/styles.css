@@ -341,12 +341,12 @@ html, body {
 
 @media (max-width: 1200px) {
   .project-card {
-    width: 160px;
-    height: 280px;
+    width: 170px;
+    height: 290px;
   }
 
   .card-link:hover .project-card {
-    width: 320px;
+    width: 340px;
   }
 }
 
@@ -367,12 +367,12 @@ html, body {
   }
 
   .project-card {
-    width: 140px;
-    height: 260px;
+    width: 150px;
+    height: 270px;
   }
 
   .card-link:hover .project-card {
-    width: 280px;
+    width: 300px;
   }
 }
 
@@ -384,12 +384,12 @@ html, body {
   }
 
   .project-card {
-    width: 130px;
-    height: 240px;
+    width: 135px;
+    height: 250px;
   }
 
   .card-link:hover .project-card {
-    width: 260px;
+    width: 270px;
   }
 }
 
