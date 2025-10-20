@@ -23,7 +23,7 @@ function updateNYCTime() {
 
 function renderHome() {
   const cardHtml = cards
-    .map((c) => `<a class="card-link" href="${c.link}" aria-label="Open ${c.slug} case">${renderCard(c)}</a>`) 
+    .map((c) => `<a class="card-link" href="${c.link}" aria-label="Open ${c.slug} case">${renderCard(c)}</a>`)
     .join('')
 
   root.innerHTML = `
@@ -31,7 +31,7 @@ function renderHome() {
       <div class="portfolio-content">
         <div class="hero-section">
           <h1 class="hero-heading">
-            Hey there! I'm Patricia 
+            Hey there! I'm Patricia
             <button class="profile-pill" aria-label="View profile">
               <img src="https://api.builder.io/api/v1/image/assets/TEMP/2489a895dad2614ef19df70de9ef72204a4b9b5b?width=232" alt="Patricia profile" class="profile-image" />
             </button>, a product designer shaping clarity out of complexity.
@@ -50,6 +50,31 @@ function renderHome() {
       </div>
     </main>
   `
+
+  attachCardHoverHandlers()
+}
+
+function attachCardHoverHandlers() {
+  const cardLinks = document.querySelectorAll('.card-link')
+
+  cardLinks.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      cardLinks.forEach(l => {
+        if (l !== link) {
+          l.classList.add('compressed')
+        } else {
+          l.classList.add('expanded')
+        }
+      })
+    })
+
+    link.addEventListener('mouseleave', () => {
+      cardLinks.forEach(l => {
+        l.classList.remove('compressed')
+        l.classList.remove('expanded')
+      })
+    })
+  })
 }
 
 function renderCase(slug) {

@@ -106,30 +106,39 @@ html, body {
 .projects-grid {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap;
   align-items: flex-end;
-  padding: 2rem 0;
-  perspective: 2000px;
+  padding: 2rem 0 0 0;
+  width: 100%;
+  max-width: 100%;
+  height: 401px;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  flex: 1 1 0;
+  transition: flex 0.4s ease-in-out;
+}
+
+.card-link.expanded {
+  flex: 1.451 1 0;
+}
+
+.card-link.compressed {
+  flex: 0.908 1 0;
 }
 
 .project-card {
-  flex-shrink: 0;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transform-style: preserve-3d;
-  transform-origin: center center;
-  width: clamp(125px, 13.5vw, 195px);
-  height: clamp(176px, 19.2vw, 276px);
+  width: 100%;
+  height: 276px;
+  transition: height 0.4s ease-in-out;
 }
 
-
-
-.project-card:hover {
-  transform: scale(1.35) translateY(-12px) rotateX(2deg) rotateY(-2deg);
-  z-index: 10;
+.card-link.expanded .project-card {
+  height: 401px;
 }
 
-/* Hover trigger overlay similar to Framer's mouse-enter-trigger */
 .mouse-enter-trigger {
   position: absolute;
   inset: 0;
@@ -141,12 +150,6 @@ html, body {
   width: 100%;
   height: 100%;
   position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.4s ease;
-}
-
-.project-card:hover .card-inner {
-  transform: translateZ(20px);
 }
 
 .card-background {
@@ -157,29 +160,26 @@ html, body {
               0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30);
   overflow: hidden;
   position: relative;
-  transition: box-shadow 0.4s ease, transform 0.4s ease;
+  transition: box-shadow 0.4s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
-  will-change: transform;
 }
 
-.project-card:hover .card-background {
-  box-shadow: 0 8px 16px 4px rgba(0, 0, 0, 0.2), 
+.card-link.expanded .card-background {
+  box-shadow: 0 8px 16px 4px rgba(0, 0, 0, 0.2),
               0 2px 6px 0 rgba(0, 0, 0, 0.35);
-  transform: translateZ(10px);
 }
 
 .pattern-card {
   background: #1A2267;
-  padding: 1rem;
+  padding: clamp(0.5rem, 1.5vw, 1rem);
 }
 
 .cube-pattern {
   display: flex;
   flex-direction: column;
   gap: 0;
-  transform: scale(0.8);
 }
 
 .cube-row {
@@ -193,14 +193,14 @@ html, body {
 }
 
 .cube {
-  width: 60px;
-  height: 69px;
+  width: clamp(40px, 6vw, 60px);
+  height: clamp(46px, 7vw, 69px);
   position: relative;
 }
 
 .cube-top {
-  width: 34px;
-  height: 34px;
+  width: clamp(22px, 3.5vw, 34px);
+  height: clamp(22px, 3.5vw, 34px);
   background: #005EFF;
   transform: rotate(45deg);
   position: absolute;
@@ -209,21 +209,21 @@ html, body {
 }
 
 .cube-left {
-  width: 34px;
-  height: 34px;
+  width: clamp(22px, 3.5vw, 34px);
+  height: clamp(22px, 3.5vw, 34px);
   background: #7BACFF;
   position: absolute;
   left: 0;
-  top: 17px;
+  top: clamp(11px, 1.8vw, 17px);
 }
 
 .cube-right {
-  width: 34px;
-  height: 34px;
+  width: clamp(22px, 3.5vw, 34px);
+  height: clamp(22px, 3.5vw, 34px);
   background: #0A1264;
   position: absolute;
-  left: 30px;
-  top: 17px;
+  left: clamp(20px, 3vw, 30px);
+  top: clamp(11px, 1.8vw, 17px);
 }
 
 .laptop-img,
@@ -233,9 +233,9 @@ html, body {
 }
 
 .laptop-img {
-  width: 100%;
+  width: 120%;
   height: auto;
-  max-width: 406px;
+  object-fit: cover;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.30)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.15));
   top: 50%;
   left: 50%;
@@ -243,9 +243,9 @@ html, body {
 }
 
 .dashboard-screen {
-  width: 74%;
-  max-width: 300px;
+  width: 90%;
   height: auto;
+  object-fit: cover;
   border: 1px solid #9B9B9B;
   top: 50%;
   left: 50%;
@@ -255,10 +255,11 @@ html, body {
 .phone-body,
 .phone-screen {
   position: absolute;
+  object-fit: cover;
 }
 
 .phone-1 {
-  width: clamp(180px, 220%, 424px);
+  width: 200%;
   height: auto;
   transform: rotate(-22.724deg);
   top: -10%;
@@ -266,7 +267,7 @@ html, body {
 }
 
 .phone-1-screen {
-  width: clamp(45px, 55%, 106px);
+  width: 50%;
   height: auto;
   border-radius: 15.384px;
   box-shadow: -0.525px 0.525px 2.623px 0 rgba(11, 2, 75, 0.25);
@@ -276,7 +277,7 @@ html, body {
 }
 
 .phone-2 {
-  width: clamp(180px, 220%, 424px);
+  width: 200%;
   height: auto;
   transform: rotate(-22.724deg);
   top: -60%;
@@ -284,7 +285,7 @@ html, body {
 }
 
 .phone-2-screen {
-  width: clamp(45px, 55%, 105px);
+  width: 50%;
   height: auto;
   border-radius: 15.379px;
   box-shadow: -1.199px 1.199px 5.993px 0 rgba(11, 2, 75, 0.25);
@@ -294,9 +295,9 @@ html, body {
 }
 
 .graph-img {
-  width: 100%;
-  max-width: 315px;
+  width: 120%;
   height: auto;
+  object-fit: cover;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -319,96 +320,138 @@ html, body {
   width: 100%;
   height: 100%;
   border-radius: 16px;
-  box-shadow: 0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15), 
+  box-shadow: 0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15),
               0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30);
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding-top: 2rem;
-  transition: transform 0.4s ease;
 }
 
 .resume-text {
   color: #9FC3C5;
   font-family: 'Work Sans', sans-serif;
-  font-size: clamp(2rem, 4.2vw, 5rem);
+  font-size: clamp(3.5rem, 8vw, 5rem);
   font-weight: 700;
   line-height: 0.7;
+  text-align: center;
 }
 
 .layer-1 {
   z-index: 3;
-  transform: translate(0, 0);
 }
 
 .layer-2 {
   z-index: 2;
-  transform: translate(-10px, -10px);
+  transform: translate(-12px, -12px);
 }
 
 .layer-3 {
   z-index: 1;
-  transform: translate(-20px, -20px);
-}
-
-.project-card[data-card="resume"]:hover .layer-1 {
-  transform: translate(8px, 8px);
-}
-
-.project-card[data-card="resume"]:hover .layer-2 {
-  transform: translate(-2px, -2px);
-}
-
-.project-card[data-card="resume"]:hover .layer-3 {
-  transform: translate(-12px, -12px);
+  transform: translate(-24px, -24px);
 }
 
 @media (max-width: 1200px) {
   .projects-grid {
-    gap: 0.75rem;
+    height: 390px;
   }
-  
+
   .project-card {
-    width: clamp(110px, 16vw, 180px);
-    height: clamp(158px, 23vw, 260px);
+    height: 290px;
+  }
+
+  .card-link.expanded .project-card {
+    height: 390px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .portfolio-container {
     padding: 1.5rem;
   }
-  
+
   .hero-heading {
     text-align: center;
     justify-content: center;
   }
-  
+
   .info-bar {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .projects-grid {
-    justify-content: center;
-    gap: 1rem;
+    height: 370px;
   }
-  
+
   .project-card {
-    width: clamp(100px, 30vw, 150px);
-    height: clamp(144px, 43vw, 216px);
+    height: 270px;
+  }
+
+  .card-link.expanded .project-card {
+    height: 370px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    height: auto;
+  }
+
+  .card-link {
+    flex: 1 1 calc(50% - 0.375rem);
+  }
+
+  .card-link.expanded {
+    flex: 1 1 calc(50% - 0.375rem);
+  }
+
+  .card-link.compressed {
+    flex: 1 1 calc(50% - 0.375rem);
+  }
+
+  .project-card {
+    height: 250px;
+  }
+
+  .card-link.expanded .project-card {
+    height: 320px;
   }
 }
 
 @media (max-width: 480px) {
   .projects-grid {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    gap: 1rem;
+    height: auto;
+    width: 100%;
   }
-  
+
+  .card-link {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .card-link.expanded {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .card-link.compressed {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
   .project-card {
-    width: min(280px, 85vw);
-    height: min(400px, 120vw);
+    height: 280px;
+  }
+
+  .card-link.expanded .project-card {
+    height: 380px;
   }
 }
