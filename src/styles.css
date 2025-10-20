@@ -130,7 +130,6 @@ html, body {
   height: clamp(250px, 28vw, 400px);
 }
 
-/* Hover trigger overlay similar to Framer's mouse-enter-trigger */
 .mouse-enter-trigger {
   position: absolute;
   inset: 0;
@@ -142,12 +141,11 @@ html, body {
   width: 100%;
   height: 100%;
   position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.project-card:hover .card-inner {
-  transform: translateZ(20px);
+.card-link:hover .card-inner {
+  transform: translateY(-4px);
 }
 
 .card-background {
@@ -158,17 +156,15 @@ html, body {
               0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30);
   overflow: hidden;
   position: relative;
-  transition: box-shadow 0.4s ease, transform 0.4s ease;
+  transition: box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  will-change: transform;
 }
 
-.project-card:hover .card-background {
-  box-shadow: 0 8px 16px 4px rgba(0, 0, 0, 0.2), 
+.card-link:hover .card-background {
+  box-shadow: 0 8px 16px 4px rgba(0, 0, 0, 0.2),
               0 2px 6px 0 rgba(0, 0, 0, 0.35);
-  transform: translateZ(10px);
 }
 
 .pattern-card {
