@@ -227,33 +227,21 @@ html, body {
 }
 
 .laptop-img {
-  width: 90%;
+  width: 100%;
   height: auto;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.30)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.15));
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.7);
-  transform-origin: center;
-  transition: transform 0.4s ease-in-out;
-}
-
-.card-link:hover .laptop-img {
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%);
 }
 
 .dashboard-screen {
-  width: 85%;
+  width: 100%;
   height: auto;
   border: 1px solid #9B9B9B;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.7);
-  transform-origin: center;
-  transition: transform 0.4s ease-in-out;
-}
-
-.card-link:hover .dashboard-screen {
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%);
 }
 
 .phone-body,
