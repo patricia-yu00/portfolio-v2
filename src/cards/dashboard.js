@@ -1,9 +1,11 @@
+import moodyImg from './cards-cover/moodys.png'
+
 const dashboardCard = {
   slug: 'dashboard',
   size: 'sm',
   background: '#004066',
   content: `
-    <img src="./cards-cover/moodys.png" alt="Dashboard project" class="card-cover-image" />
+    <img src="${moodyImg}" alt="Dashboard project" class="card-cover-image" />
   `
 }
 
