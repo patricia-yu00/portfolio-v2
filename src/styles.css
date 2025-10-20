@@ -221,8 +221,9 @@ html, body {
 }
 
 .laptop-img {
-  width: 100%;
+  width: 120%;
   height: auto;
+  object-fit: cover;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.30)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.15));
   top: 50%;
   left: 50%;
@@ -230,8 +231,9 @@ html, body {
 }
 
 .dashboard-screen {
-  width: 100%;
+  width: 90%;
   height: auto;
+  object-fit: cover;
   border: 1px solid #9B9B9B;
   top: 50%;
   left: 50%;
@@ -241,11 +243,11 @@ html, body {
 .phone-body,
 .phone-screen {
   position: absolute;
+  object-fit: cover;
 }
 
 .phone-1 {
-  width: 220%;
-  max-width: 500px;
+  width: 200%;
   height: auto;
   transform: rotate(-22.724deg);
   top: -10%;
@@ -253,8 +255,7 @@ html, body {
 }
 
 .phone-1-screen {
-  width: 55%;
-  max-width: 130px;
+  width: 50%;
   height: auto;
   border-radius: 15.384px;
   box-shadow: -0.525px 0.525px 2.623px 0 rgba(11, 2, 75, 0.25);
@@ -264,8 +265,7 @@ html, body {
 }
 
 .phone-2 {
-  width: 220%;
-  max-width: 500px;
+  width: 200%;
   height: auto;
   transform: rotate(-22.724deg);
   top: -60%;
@@ -273,8 +273,7 @@ html, body {
 }
 
 .phone-2-screen {
-  width: 55%;
-  max-width: 130px;
+  width: 50%;
   height: auto;
   border-radius: 15.379px;
   box-shadow: -1.199px 1.199px 5.993px 0 rgba(11, 2, 75, 0.25);
@@ -284,9 +283,9 @@ html, body {
 }
 
 .graph-img {
-  width: 130%;
-  max-width: 400px;
+  width: 120%;
   height: auto;
+  object-fit: cover;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
