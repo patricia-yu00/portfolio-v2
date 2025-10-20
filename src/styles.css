@@ -119,11 +119,11 @@ html, body {
   transition: flex 0.4s ease-in-out;
 }
 
-.card-link:hover {
+.card-link.expanded {
   flex: 0 0 283px;
 }
 
-.card-link:hover ~ .card-link {
+.card-link.compressed {
   flex: 0 0 177px;
 }
 
