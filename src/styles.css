@@ -134,7 +134,7 @@ html, body {
   transition: height 0.4s ease-in-out;
 }
 
-.card-link:hover .project-card {
+.card-link.expanded .project-card {
   height: 401px;
 }
 
