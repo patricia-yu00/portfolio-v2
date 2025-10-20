@@ -451,14 +451,29 @@ html, body {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    height: auto;
+  }
+
+  .card-link {
+    flex: 0 0 160px;
+    width: 160px;
+  }
+
+  .card-link.expanded {
+    flex: 0 0 280px;
+    width: 280px;
+  }
+
+  .card-link.compressed {
+    flex: 0 0 160px;
+    width: 160px;
   }
 
   .project-card {
-    width: 160px;
     height: 280px;
   }
 
-  .card-link:hover .project-card {
-    width: 320px;
+  .card-link.expanded .project-card {
+    height: 380px;
   }
 }
