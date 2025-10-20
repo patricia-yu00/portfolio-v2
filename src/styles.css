@@ -356,18 +356,6 @@ html, body {
     height: 390px;
   }
 
-  .card-link {
-    flex: 0 0 170px;
-  }
-
-  .card-link.expanded {
-    flex: 0 0 265px;
-  }
-
-  .card-link.compressed {
-    flex: 0 0 160px;
-  }
-
   .project-card {
     height: 290px;
   }
