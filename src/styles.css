@@ -118,13 +118,13 @@ html, body {
 
 .project-card {
   cursor: pointer;
-  width: 180px;
-  height: 300px;
+  width: 195px;
+  height: 320px;
   transition: width 0.4s ease-in-out;
 }
 
 .card-link:hover .project-card {
-  width: 360px;
+  width: 380px;
 }
 
 .mouse-enter-trigger {
