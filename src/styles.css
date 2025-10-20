@@ -392,13 +392,28 @@ html, body {
     gap: 1rem;
   }
 
+  .projects-grid {
+    height: 370px;
+  }
+
+  .card-link {
+    flex: 0 0 150px;
+  }
+
+  .card-link.expanded {
+    flex: 0 0 245px;
+  }
+
+  .card-link.compressed {
+    flex: 0 0 140px;
+  }
+
   .project-card {
-    width: 150px;
     height: 270px;
   }
 
-  .card-link:hover .project-card {
-    width: 300px;
+  .card-link.expanded .project-card {
+    height: 370px;
   }
 }
 
