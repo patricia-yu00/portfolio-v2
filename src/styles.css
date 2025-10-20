@@ -168,12 +168,6 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 0;
-  transform: scale(0.75);
-  transform-origin: center;
-}
-
-.card-link:hover .cube-pattern {
-  transform: scale(1);
 }
 
 .cube-row {
