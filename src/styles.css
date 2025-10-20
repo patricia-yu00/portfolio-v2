@@ -319,7 +319,7 @@ html, body {
 .resume-text {
   color: #9FC3C5;
   font-family: 'Work Sans', sans-serif;
-  font-size: 5rem;
+  font-size: clamp(3.5rem, 8vw, 5rem);
   font-weight: 700;
   line-height: 0.7;
   text-align: center;
