@@ -145,7 +145,7 @@ html, body {
 }
 
 .card-link:hover .card-inner {
-  transform: translateY(-4px);
+  transform: translateY(-8px) scale(1.02);
 }
 
 .card-background {
