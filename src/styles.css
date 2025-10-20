@@ -228,12 +228,13 @@ html, body {
 .dashboard-screen,
 .graph-img {
   position: absolute;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .laptop-img {
-  width: 100%;
+  width: 130%;
   height: auto;
-  max-width: 406px;
+  max-width: 500px;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.30)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.15));
   top: 50%;
   left: 50%;
@@ -241,8 +242,8 @@ html, body {
 }
 
 .dashboard-screen {
-  width: 74%;
-  max-width: 300px;
+  width: 95%;
+  max-width: 380px;
   height: auto;
   border: 1px solid #9B9B9B;
   top: 50%;
@@ -253,10 +254,12 @@ html, body {
 .phone-body,
 .phone-screen {
   position: absolute;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .phone-1 {
-  width: clamp(180px, 220%, 424px);
+  width: 220%;
+  max-width: 500px;
   height: auto;
   transform: rotate(-22.724deg);
   top: -10%;
@@ -264,7 +267,8 @@ html, body {
 }
 
 .phone-1-screen {
-  width: clamp(45px, 55%, 106px);
+  width: 55%;
+  max-width: 130px;
   height: auto;
   border-radius: 15.384px;
   box-shadow: -0.525px 0.525px 2.623px 0 rgba(11, 2, 75, 0.25);
@@ -274,7 +278,8 @@ html, body {
 }
 
 .phone-2 {
-  width: clamp(180px, 220%, 424px);
+  width: 220%;
+  max-width: 500px;
   height: auto;
   transform: rotate(-22.724deg);
   top: -60%;
@@ -282,7 +287,8 @@ html, body {
 }
 
 .phone-2-screen {
-  width: clamp(45px, 55%, 105px);
+  width: 55%;
+  max-width: 130px;
   height: auto;
   border-radius: 15.379px;
   box-shadow: -1.199px 1.199px 5.993px 0 rgba(11, 2, 75, 0.25);
@@ -292,8 +298,8 @@ html, body {
 }
 
 .graph-img {
-  width: 100%;
-  max-width: 315px;
+  width: 130%;
+  max-width: 400px;
   height: auto;
   top: 50%;
   left: 50%;
