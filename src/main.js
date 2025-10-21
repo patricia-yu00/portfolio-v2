@@ -42,8 +42,8 @@ function renderHome() {
 
         <div class="info-bar">
           <div class="currently-at">Currently @ Adobe</div>
-          <div id="nyc-time" class="nyc-time">NYC • 00:00:00</div>
           <a href="#interactive" class="interactive-link">Interactive mode</a>
+          <div id="nyc-time" class="nyc-time">NYC • 00:00:00</div>
         </div>
 
         <div class="projects-grid">
