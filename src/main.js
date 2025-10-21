@@ -59,7 +59,6 @@ function renderHome() {
 function attachCardHoverHandlers() {
   const cardLinks = document.querySelectorAll('.card-link')
   const heroHeading = document.querySelector('.hero-heading')
-  const firstCard = cardLinks[0]
 
   const originalHeroContent = heroHeading.innerHTML
 
@@ -78,10 +77,25 @@ function attachCardHoverHandlers() {
       })
 
       if (index === 0) {
-        heroHeading.innerHTML = `
-          Enhancing AI tools to improve workflows and adoption in finance
-          <img src="https://api.builder.io/api/v1/image/assets/TEMP/53e0801a582dc2ca9d5bcc187c07165f688d51f6?width=140" alt="Moody's" class="hero-logo" />
-        `
+        heroHeading.classList.add('hero-heading-fade-out')
+        setTimeout(() => {
+          heroHeading.innerHTML = `
+            Enhancing AI tools to improve workflows and adoption in finance<img src="https://api.builder.io/api/v1/image/assets/TEMP/53e0801a582dc2ca9d5bcc187c07165f688d51f6?width=140" alt="Moody's" class="hero-logo" />
+          `
+          heroHeading.classList.remove('hero-heading-fade-out')
+          heroHeading.classList.add('hero-heading-fade-in')
+        }, 150)
+      }
+
+      if (index === 1) {
+        heroHeading.classList.add('hero-heading-fade-out')
+        setTimeout(() => {
+          heroHeading.innerHTML = `
+            Enhancing AI tools to improve workflows and adoption in finance<img src="https://api.builder.io/api/v1/image/assets/TEMP/53e0801a582dc2ca9d5bcc187c07165f688d51f6?width=140" alt="Moody's" class="hero-logo" />
+          `
+          heroHeading.classList.remove('hero-heading-fade-out')
+          heroHeading.classList.add('hero-heading-fade-in')
+        }, 150)
       }
     })
 
@@ -91,8 +105,13 @@ function attachCardHoverHandlers() {
         l.classList.remove('expanded')
       })
 
-      if (index === 0) {
-        heroHeading.innerHTML = originalHeroContent
+      if (index === 0 || index === 1) {
+        heroHeading.classList.add('hero-heading-fade-out')
+        setTimeout(() => {
+          heroHeading.innerHTML = originalHeroContent
+          heroHeading.classList.remove('hero-heading-fade-out')
+          heroHeading.classList.add('hero-heading-fade-in')
+        }, 150)
       }
     })
   })
