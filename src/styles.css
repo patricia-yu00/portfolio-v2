@@ -117,7 +117,7 @@ html, body {
   text-decoration: none;
   color: inherit;
   flex: 1 1 0;
-  transition: flex 0.4s ease-in-out;
+  transition: flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-link.expanded {
