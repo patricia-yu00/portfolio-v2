@@ -81,7 +81,7 @@ function attachCardHoverHandlers() {
         heroHeading.classList.add('hero-heading-fade-out')
         setTimeout(() => {
           heroHeading.innerHTML = `
-            Enhancing AI tools to improve workflows and adoption in finance<img src="https://api.builder.io/api/v1/image/assets/TEMP/53e0801a582dc2ca9d5bcc187c07165f688d51f6?width=140" alt="Moody's" class="hero-logo" />
+            Enhancing AI tools to improve workflows and adoption in finance <img src="https://api.builder.io/api/v1/image/assets/TEMP/53e0801a582dc2ca9d5bcc187c07165f688d51f6?width=140" alt="Moody's" class="hero-logo" />
           `
           heroHeading.classList.remove('hero-heading-fade-out')
           heroHeading.classList.add('hero-heading-fade-in')
@@ -91,14 +91,24 @@ function attachCardHoverHandlers() {
         heroHeading.classList.add('hero-heading-fade-out')
         setTimeout(() => {
           heroHeading.innerHTML = `
-            Creating a more efficient order management experience for engineers<img src="https://api.builder.io/api/v1/image/assets/TEMP/befe117fa011fa36706d8adf7da93e5248343996?width=80" alt="Verizon" class="hero-logo" />
+            Creating a more efficient order management experience for engineers <img src="https://api.builder.io/api/v1/image/assets/TEMP/befe117fa011fa36706d8adf7da93e5248343996?width=80" alt="Verizon" class="hero-logo" />
           `
           heroHeading.classList.remove('hero-heading-fade-out')
           heroHeading.classList.add('hero-heading-fade-in')
           currentActiveIndex = 2
         }, 150)
-      } else if (index !== 1 && index !== 2 && (currentActiveIndex === 1 || currentActiveIndex === 2)) {
-        // Smooth fade back when leaving card 2 or 3
+      } else if (index === 3 && currentActiveIndex !== 3) {
+        heroHeading.classList.add('hero-heading-fade-out')
+        setTimeout(() => {
+          heroHeading.innerHTML = `
+            Designing an inclusive autonomous vehicle car-sharing app experience <img src="https://api.builder.io/api/v1/image/assets/TEMP/480e8e6331ebaa9afe5eb428f661d04c61c06970?width=103" alt="PennDOT" class="hero-logo" />
+          `
+          heroHeading.classList.remove('hero-heading-fade-out')
+          heroHeading.classList.add('hero-heading-fade-in')
+          currentActiveIndex = 3
+        }, 150)
+      } else if (index !== 1 && index !== 2 && index !== 3 && (currentActiveIndex === 1 || currentActiveIndex === 2 || currentActiveIndex === 3)) {
+        // Smooth fade back when leaving card 2, 3, or 4
         heroHeading.classList.add('hero-heading-fade-out')
         setTimeout(() => {
           heroHeading.innerHTML = originalHeroContent
@@ -115,7 +125,7 @@ function attachCardHoverHandlers() {
         l.classList.remove('expanded')
       })
 
-      if (index === 1 || index === 2) {
+      if (index === 1 || index === 2 || index === 3) {
         heroHeading.classList.add('hero-heading-fade-out')
         setTimeout(() => {
           heroHeading.innerHTML = originalHeroContent
