@@ -56,92 +56,106 @@ function renderHome() {
   attachCardHoverHandlers()
 }
 
+const CARD_HERO_CONTENT = [
+  null,
+  {
+    text: 'Enhancing AI tools to improve workflows and ',
+    highlight: 'adoption in finance',
+    image: {
+      src: 'https://api.builder.io/api/v1/image/assets/TEMP/53e0801a582dc2ca9d5bcc187c07165f688d51f6?width=140',
+      alt: 'Moody\'s'
+    }
+  },
+  {
+    text: 'Creating a more efficient order management experience for engineers ',
+    highlight: null,
+    image: {
+      src: 'https://api.builder.io/api/v1/image/assets/TEMP/befe117fa011fa36706d8adf7da93e5248343996?width=80',
+      alt: 'Verizon'
+    }
+  },
+  {
+    text: 'Designing an inclusive autonomous vehicle car-sharing app experience ',
+    highlight: null,
+    image: {
+      src: 'https://api.builder.io/api/v1/image/assets/TEMP/480e8e6331ebaa9afe5eb428f661d04c61c06970?width=103',
+      alt: 'PennDOT'
+    }
+  },
+  {
+    text: 'Stimulating smartphone growth & understanding brand switching behavior ',
+    highlight: null,
+    image: {
+      src: 'https://api.builder.io/api/v1/image/assets/TEMP/349402280f99b7abc5b05d16fb89e713bbe801da?width=97',
+      alt: 'Google'
+    }
+  }
+]
+
+const FADE_DURATION = 300
+
+function buildHeroHtml(contentConfig) {
+  if (!contentConfig) return ''
+
+  const highlightPart = contentConfig.highlight
+    ? `<div class="hero-highlight">${contentConfig.highlight}</div>`
+    : ''
+
+  return `${contentConfig.text}${highlightPart}<img src="${contentConfig.image.src}" alt="${contentConfig.image.alt}" class="hero-logo" />`
+}
+
+function fadeHeroContent(heroHeading, newContent, callback) {
+  heroHeading.classList.add('hero-heading-fade-out')
+  setTimeout(() => {
+    heroHeading.innerHTML = newContent
+    heroHeading.classList.remove('hero-heading-fade-out')
+    heroHeading.classList.add('hero-heading-fade-in')
+    callback?.()
+  }, FADE_DURATION)
+}
+
+function updateCardExpansion(cardLinks, activeLink) {
+  cardLinks.forEach(link => {
+    link.classList.remove('compressed', 'expanded')
+  })
+
+  cardLinks.forEach(link => {
+    if (link !== activeLink) {
+      link.classList.add('compressed')
+    } else {
+      link.classList.add('expanded')
+    }
+  })
+}
+
 function attachCardHoverHandlers() {
   const cardLinks = document.querySelectorAll('.card-link')
   const heroHeading = document.querySelector('.hero-heading')
-
   const originalHeroContent = heroHeading.innerHTML
-  let currentActiveIndex = null
+  let currentActiveCardIndex = null
 
-  cardLinks.forEach((link, index) => {
+  cardLinks.forEach((link, cardIndex) => {
     link.addEventListener('mouseenter', () => {
-      cardLinks.forEach(l => {
-        l.classList.remove('compressed', 'expanded')
-      })
+      updateCardExpansion(cardLinks, link)
 
-      cardLinks.forEach(l => {
-        if (l !== link) {
-          l.classList.add('compressed')
-        } else {
-          l.classList.add('expanded')
-        }
-      })
-
-      if (index === 1) {
-        if (currentActiveIndex !== 1) {
-          heroHeading.classList.add('hero-heading-fade-out')
-          setTimeout(() => {
-            heroHeading.innerHTML = `
-              Enhancing AI tools to improve workflows and <div class="hero-highlight">adoption in finance</div><img src="https://api.builder.io/api/v1/image/assets/TEMP/53e0801a582dc2ca9d5bcc187c07165f688d51f6?width=140" alt="Moody's" class="hero-logo" />
-            `
-            heroHeading.classList.remove('hero-heading-fade-out')
-            heroHeading.classList.add('hero-heading-fade-in')
-            currentActiveIndex = 1
-          }, 300)
-        }
-      } else if (index === 2) {
-        if (currentActiveIndex !== 2) {
-          heroHeading.classList.add('hero-heading-fade-out')
-          setTimeout(() => {
-            heroHeading.innerHTML = `
-              Creating a more efficient order management experience for engineers <img src="https://api.builder.io/api/v1/image/assets/TEMP/befe117fa011fa36706d8adf7da93e5248343996?width=80" alt="Verizon" class="hero-logo" />
-            `
-            heroHeading.classList.remove('hero-heading-fade-out')
-            heroHeading.classList.add('hero-heading-fade-in')
-            currentActiveIndex = 2
-          }, 300)
-        }
-      } else if (index === 3) {
-        if (currentActiveIndex !== 3) {
-          heroHeading.classList.add('hero-heading-fade-out')
-          setTimeout(() => {
-            heroHeading.innerHTML = `
-              Designing an inclusive autonomous vehicle car-sharing app experience <img src="https://api.builder.io/api/v1/image/assets/TEMP/480e8e6331ebaa9afe5eb428f661d04c61c06970?width=103" alt="PennDOT" class="hero-logo" />
-            `
-            heroHeading.classList.remove('hero-heading-fade-out')
-            heroHeading.classList.add('hero-heading-fade-in')
-            currentActiveIndex = 3
-          }, 300)
-        }
-      } else if (index === 4) {
-        if (currentActiveIndex !== 4) {
-          heroHeading.classList.add('hero-heading-fade-out')
-          setTimeout(() => {
-            heroHeading.innerHTML = `
-              Stimulating smartphone growth & understanding brand switching behavior <img src="https://api.builder.io/api/v1/image/assets/TEMP/349402280f99b7abc5b05d16fb89e713bbe801da?width=97" alt="Google" class="hero-logo" />
-            `
-            heroHeading.classList.remove('hero-heading-fade-out')
-            heroHeading.classList.add('hero-heading-fade-in')
-            currentActiveIndex = 4
-          }, 300)
-        }
+      const heroContent = CARD_HERO_CONTENT[cardIndex]
+      if (heroContent && currentActiveCardIndex !== cardIndex) {
+        const newHeroHtml = buildHeroHtml(heroContent)
+        fadeHeroContent(heroHeading, newHeroHtml, () => {
+          currentActiveCardIndex = cardIndex
+        })
       }
     })
 
     link.addEventListener('mouseleave', () => {
       cardLinks.forEach(l => {
-        l.classList.remove('compressed')
-        l.classList.remove('expanded')
+        l.classList.remove('compressed', 'expanded')
       })
 
-      if (currentActiveIndex !== null) {
-        heroHeading.classList.add('hero-heading-fade-out')
-        setTimeout(() => {
-          heroHeading.innerHTML = originalHeroContent
-          heroHeading.classList.remove('hero-heading-fade-out')
-          heroHeading.classList.add('hero-heading-fade-in')
-          currentActiveIndex = null
-        }, 300)
+      if (currentActiveCardIndex !== null) {
+        fadeHeroContent(heroHeading, originalHeroContent, () => {
+          currentActiveCardIndex = null
+        })
       }
     })
   })
