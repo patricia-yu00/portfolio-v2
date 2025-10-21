@@ -106,7 +106,7 @@ html, body {
 .projects-grid {
   display: flex;
   gap: 0.5rem;
-  align-items: flex-end;
+  align-items: stretch;
   padding: 2rem 0 0 0;
   width: 100%;
   max-width: 100%;
