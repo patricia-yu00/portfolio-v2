@@ -80,6 +80,11 @@ html, body {
   vertical-align: middle;
 }
 
+.hero-highlight {
+  display: inline-block;
+  margin: 0 0.5rem;
+}
+
 .hero-heading {
   transition: opacity 0.3s ease-in-out;
 }
