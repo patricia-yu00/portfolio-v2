@@ -131,27 +131,46 @@ function updateCardExpansion(cardLinks, activeLink) {
 function attachCardHoverHandlers() {
   const cardLinks = document.querySelectorAll('.card-link')
   const heroHeading = document.querySelector('.hero-heading')
+  if (!heroHeading || !cardLinks.length) return
+
   const originalHeroContent = heroHeading.innerHTML
   let currentActiveCardIndex = null
 
+  // Helper to find whether we're still inside the grid
+  const grid = document.querySelector('.projects-grid')
+
   cardLinks.forEach((link, cardIndex) => {
     link.addEventListener('mouseenter', () => {
+      // Expand/compress via your existing helper
       updateCardExpansion(cardLinks, link)
 
-      const heroContent = CARD_HERO_CONTENT[cardIndex]
-      if (heroContent && currentActiveCardIndex !== cardIndex) {
-        const newHeroHtml = buildHeroHtml(heroContent)
-        fadeHeroContent(heroHeading, newHeroHtml, () => {
+      // Always fade when switching to a different card
+      if (currentActiveCardIndex !== cardIndex) {
+        const heroContent = CARD_HERO_CONTENT[cardIndex]
+        const nextHtml = heroContent ? buildHeroHtml(heroContent) : originalHeroContent
+
+        // Run the fade swap; update the active index after swap
+        fadeHeroContent(heroHeading, nextHtml, () => {
           currentActiveCardIndex = cardIndex
         })
       }
     })
 
-    link.addEventListener('mouseleave', () => {
+    link.addEventListener('mouseleave', (e) => {
+      // If we're moving to another card inside the grid, do NOT reset hero;
+      // let the next mouseenter handle the fade to the new card.
+      const toEl = e.relatedTarget
+      const movingInsideAnotherCard =
+        !!toEl && (!!toEl.closest && !!toEl.closest('.card-link') && grid && grid.contains(toEl))
+
+      if (movingInsideAnotherCard) return
+
+      // We left the grid (or to a non-card area): clear expansion classes
       cardLinks.forEach(l => {
         l.classList.remove('compressed', 'expanded')
       })
 
+      // Fade back to original only when leaving card area entirely
       if (currentActiveCardIndex !== null) {
         fadeHeroContent(heroHeading, originalHeroContent, () => {
           currentActiveCardIndex = null
@@ -160,6 +179,7 @@ function attachCardHoverHandlers() {
     })
   })
 }
+
 
 function renderCase(slug) {
   const data = caseStudies[slug]
