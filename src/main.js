@@ -58,9 +58,17 @@ function renderHome() {
 
 function attachCardHoverHandlers() {
   const cardLinks = document.querySelectorAll('.card-link')
+  const heroHeading = document.querySelector('.hero-heading')
+  const firstCard = cardLinks[0]
 
-  cardLinks.forEach(link => {
+  const originalHeroContent = heroHeading.innerHTML
+
+  cardLinks.forEach((link, index) => {
     link.addEventListener('mouseenter', () => {
+      cardLinks.forEach(l => {
+        l.classList.remove('compressed', 'expanded')
+      })
+
       cardLinks.forEach(l => {
         if (l !== link) {
           l.classList.add('compressed')
@@ -68,6 +76,13 @@ function attachCardHoverHandlers() {
           l.classList.add('expanded')
         }
       })
+
+      if (index === 0) {
+        heroHeading.innerHTML = `
+          Enhancing AI tools to improve workflows and adoption in finance
+          <img src="https://api.builder.io/api/v1/image/assets/TEMP/53e0801a582dc2ca9d5bcc187c07165f688d51f6?width=140" alt="Moody's" class="hero-logo" />
+        `
+      }
     })
 
     link.addEventListener('mouseleave', () => {
@@ -75,6 +90,10 @@ function attachCardHoverHandlers() {
         l.classList.remove('compressed')
         l.classList.remove('expanded')
       })
+
+      if (index === 0) {
+        heroHeading.innerHTML = originalHeroContent
+      }
     })
   })
 }
