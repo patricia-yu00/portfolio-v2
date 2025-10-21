@@ -105,14 +105,30 @@ function buildHeroHtml(contentConfig) {
 }
 
 function fadeHeroContent(heroHeading, newContent, callback) {
+  // 0) Reset classes so the next animation can start fresh
+  heroHeading.classList.remove('hero-heading-fade-in', 'hero-heading-fade-out')
+  void heroHeading.offsetWidth // force reflow to restart animations
+
+  // 1) Fade OUT current content
   heroHeading.classList.add('hero-heading-fade-out')
+
   setTimeout(() => {
+    // 2) Swap content after fade-out completes
     heroHeading.innerHTML = newContent
+
+    // 3) Fade IN new content
     heroHeading.classList.remove('hero-heading-fade-out')
+    void heroHeading.offsetWidth // reflow so fade-in restarts every time
     heroHeading.classList.add('hero-heading-fade-in')
-    callback?.()
+
+    // 4) Clean up so future fades can retrigger
+    setTimeout(() => {
+      heroHeading.classList.remove('hero-heading-fade-in')
+      callback?.()
+    }, FADE_DURATION)
   }, FADE_DURATION)
 }
+
 
 function updateCardExpansion(cardLinks, activeLink) {
   cardLinks.forEach(link => {
