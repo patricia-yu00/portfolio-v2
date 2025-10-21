@@ -142,6 +142,9 @@ html, body {
   width: 100%;
   height: 256px;
   transition: height 0.4s ease-in-out;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .card-link.expanded .project-card {
@@ -159,6 +162,9 @@ html, body {
   width: 100%;
   height: 100%;
   position: relative;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .card-background {
@@ -172,8 +178,7 @@ html, body {
   transition: box-shadow 0.4s ease-in-out;
   padding: 0;
   margin: 0;
-  display: flex;
-  align-items: stretch;
+  box-sizing: border-box;
 }
 
 .card-link.expanded .card-background {
@@ -240,6 +245,9 @@ html, body {
   height: 100%;
   object-fit: cover;
   display: block;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .laptop-img,
