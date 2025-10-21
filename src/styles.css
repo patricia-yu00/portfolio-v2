@@ -422,11 +422,11 @@ html, body {
   }
 
   .project-card {
-    height: 250px;
+    height: 230px;
   }
 
   .card-link.expanded .project-card {
-    height: 320px;
+    height: 300px;
   }
 }
 
@@ -455,10 +455,10 @@ html, body {
   }
 
   .project-card {
-    height: 280px;
+    height: 260px;
   }
 
   .card-link.expanded .project-card {
-    height: 380px;
+    height: 360px;
   }
 }
