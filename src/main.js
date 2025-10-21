@@ -134,7 +134,7 @@ function attachCardHoverHandlers() {
         l.classList.remove('expanded')
       })
 
-      if (index === 1 || index === 2 || index === 3 || index === 4) {
+      if (currentActiveIndex !== null) {
         heroHeading.classList.add('hero-heading-fade-out')
         setTimeout(() => {
           heroHeading.innerHTML = originalHeroContent
