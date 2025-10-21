@@ -73,12 +73,38 @@ html, body {
 }
 
 .hero-logo {
-  display: inline-flex;
+  display: inline;
   width: clamp(50px, 4.8vw, 70px);
   height: clamp(50px, 4.8vw, 70px);
   border-radius: 20px;
   margin-left: 0.5rem;
   vertical-align: middle;
+}
+
+.hero-heading-fade-out {
+  animation: fadeOut 0.15s ease-in-out forwards;
+}
+
+.hero-heading-fade-in {
+  animation: fadeIn 0.15s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .info-bar {
