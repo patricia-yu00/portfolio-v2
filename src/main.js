@@ -87,6 +87,15 @@ function attachCardHoverHandlers() {
           heroHeading.classList.add('hero-heading-fade-in')
           currentActiveIndex = 1
         }, 150)
+      } else if (index !== 1 && currentActiveIndex === 1) {
+        // Smooth fade back when leaving card 2
+        heroHeading.classList.add('hero-heading-fade-out')
+        setTimeout(() => {
+          heroHeading.innerHTML = originalHeroContent
+          heroHeading.classList.remove('hero-heading-fade-out')
+          heroHeading.classList.add('hero-heading-fade-in')
+          currentActiveIndex = null
+        }, 150)
       }
     })
 
