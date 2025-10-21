@@ -92,7 +92,7 @@ const CARD_HERO_CONTENT = [
   }
 ]
 
-const FADE_DURATION = 300
+const FADE_DURATION = 100
 
 function buildHeroHtml(contentConfig) {
   if (!contentConfig) return ''
