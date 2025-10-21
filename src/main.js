@@ -57,114 +57,79 @@ function renderHome() {
 }
 
 function attachCardHoverHandlers() {
-  const cardLinks = document.querySelectorAll('.card-link')
+  const grid = document.querySelector('.projects-grid')
   const heroHeading = document.querySelector('.hero-heading')
+  if (!grid || !heroHeading) return
 
   const originalHeroContent = heroHeading.innerHTML
-  let currentActiveIndex = null
+  let lastHovered = null
+  let swapping = false
 
-  cardLinks.forEach((link, index) => {
-    link.addEventListener('mouseenter', () => {
-      cardLinks.forEach(l => {
-        l.classList.remove('compressed', 'expanded')
-      })
+  // Single fade+swap routine that ALWAYS runs on change
+  function fadeSwap(nextHtml) {
+    // If we’re mid-swap, restart the animation cleanly
+    heroHeading.classList.remove('hero-heading-fade-in')
+    heroHeading.classList.add('hero-heading-fade-out')
 
-      cardLinks.forEach(l => {
-        if (l !== link) {
-          l.classList.add('compressed')
-        } else {
-          l.classList.add('expanded')
-        }
-      })
+    // Use transitionend if you’re using CSS transitions,
+    // or animationend if you’re using CSS animations.
+    const onEnd = () => {
+      heroHeading.removeEventListener('transitionend', onEnd)
+      heroHeading.removeEventListener('animationend', onEnd)
+      heroHeading.innerHTML = nextHtml
+      // flip classes to fade in
+      heroHeading.classList.remove('hero-heading-fade-out')
+      // force reflow so the fade-in always re-triggers
+      void heroHeading.offsetWidth
+      heroHeading.classList.add('hero-heading-fade-in')
+      swapping = false
+    }
 
-      if (index === 1) {
-        if (currentActiveIndex !== 1) {
-          heroHeading.classList.add('hero-heading-fade-out')
-          setTimeout(() => {
-            heroHeading.innerHTML = `
-              Enhancing AI tools to improve workflows and <div class="hero-highlight">adoption in finance</div><img src="https://api.builder.io/api/v1/image/assets/TEMP/53e0801a582dc2ca9d5bcc187c07165f688d51f6?width=140" alt="Moody's" class="hero-logo" />
-            `
-            heroHeading.classList.remove('hero-heading-fade-out')
-            heroHeading.classList.add('hero-heading-fade-in')
-            currentActiveIndex = 1
-          }, 300)
-        }
-      } else if (index === 2) {
-        if (currentActiveIndex !== 2) {
-          heroHeading.classList.add('hero-heading-fade-out')
-          setTimeout(() => {
-            heroHeading.innerHTML = `
-              Creating a more efficient order management experience for engineers <img src="https://api.builder.io/api/v1/image/assets/TEMP/befe117fa011fa36706d8adf7da93e5248343996?width=80" alt="Verizon" class="hero-logo" />
-            `
-            heroHeading.classList.remove('hero-heading-fade-out')
-            heroHeading.classList.add('hero-heading-fade-in')
-            currentActiveIndex = 2
-          }, 300)
-        }
-      } else if (index === 3) {
-        if (currentActiveIndex !== 3) {
-          heroHeading.classList.add('hero-heading-fade-out')
-          setTimeout(() => {
-            heroHeading.innerHTML = `
-              Designing an inclusive autonomous vehicle car-sharing app experience <img src="https://api.builder.io/api/v1/image/assets/TEMP/480e8e6331ebaa9afe5eb428f661d04c61c06970?width=103" alt="PennDOT" class="hero-logo" />
-            `
-            heroHeading.classList.remove('hero-heading-fade-out')
-            heroHeading.classList.add('hero-heading-fade-in')
-            currentActiveIndex = 3
-          }, 300)
-        }
-      } else if (index === 4) {
-        if (currentActiveIndex !== 4) {
-          heroHeading.classList.add('hero-heading-fade-out')
-          setTimeout(() => {
-            heroHeading.innerHTML = `
-              Stimulating smartphone growth & understanding brand switching behavior <img src="https://api.builder.io/api/v1/image/assets/TEMP/349402280f99b7abc5b05d16fb89e713bbe801da?width=97" alt="Google" class="hero-logo" />
-            `
-            heroHeading.classList.remove('hero-heading-fade-out')
-            heroHeading.classList.add('hero-heading-fade-in')
-            currentActiveIndex = 4
-          }, 300)
-        }
-      }
-    })
+    swapping = true
+    // listen for either, in case your CSS uses one or the other
+    heroHeading.addEventListener('transitionend', onEnd, { once: true })
+    heroHeading.addEventListener('animationend', onEnd, { once: true })
+  }
 
-    link.addEventListener('mouseleave', () => {
-      cardLinks.forEach(l => {
-        l.classList.remove('compressed')
-        l.classList.remove('expanded')
-      })
+  // Event delegation: one listener for all cards
+  grid.addEventListener('mouseover', (e) => {
+    const link = e.target.closest('.card-link')
+    if (!link || !grid.contains(link)) return
 
-      if (currentActiveIndex !== null) {
-        heroHeading.classList.add('hero-heading-fade-out')
-        setTimeout(() => {
-          heroHeading.innerHTML = originalHeroContent
-          heroHeading.classList.remove('hero-heading-fade-out')
-          heroHeading.classList.add('hero-heading-fade-in')
-          currentActiveIndex = null
-        }, 300)
-      }
-    })
+    // mark container state for CSS-based compress/expand
+    if (!grid.classList.contains('is-hovering')) grid.classList.add('is-hovering')
+
+    // if same card, do nothing
+    if (lastHovered === link) return
+
+    // update hovered class efficiently (no double loops)
+    const prev = grid.querySelector('.card-link.hovered')
+    if (prev) prev.classList.remove('hovered')
+    link.classList.add('hovered')
+
+    lastHovered = link
+
+    // figure out index (1-based like your existing logic)
+    const cardLinks = Array.from(grid.querySelectorAll('.card-link'))
+    const index = cardLinks.indexOf(link)
+
+    // choose hero content; if not in map, fall back to original
+    const nextHtml = HERO_BY_INDEX[index] || originalHeroContent
+
+    // run the fade every time the hovered card changes
+    fadeSwap(nextHtml)
+  })
+
+  // When leaving the grid entirely, reset
+  grid.addEventListener('mouseleave', () => {
+    grid.classList.remove('is-hovering')
+    const prev = grid.querySelector('.card-link.hovered')
+    if (prev) prev.classList.remove('hovered')
+    lastHovered = null
+    fadeSwap(originalHeroContent)
   })
 }
 
-function renderCase(slug) {
-  const data = caseStudies[slug]
-  if (!data) {
-    root.innerHTML = `
-      <main class="case-container">
-        <article class="case-study">
-          <header class="case-header">
-            <a href="#" class="back-link" aria-label="Back to home">← Back</a>
-            <h1 class="case-title">Not found</h1>
-            <p class="case-introduction">No case study exists for “${slug}”.</p>
-          </header>
-        </article>
-      </main>
-    `
-    return
-  }
-  root.innerHTML = renderCaseStudy(data)
-}
 
 function route() {
   const hash = window.location.hash
