@@ -72,6 +72,15 @@ html, body {
   mix-blend-mode: multiply;
 }
 
+.hero-logo {
+  display: inline-flex;
+  width: clamp(50px, 4.8vw, 70px);
+  height: clamp(50px, 4.8vw, 70px);
+  border-radius: 20px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
 .info-bar {
   display: flex;
   align-items: center;
