@@ -360,15 +360,15 @@ html, body {
 
 @media (max-width: 1200px) {
   .projects-grid {
-    height: 390px;
+    height: 370px;
   }
 
   .project-card {
-    height: 290px;
+    height: 270px;
   }
 
   .card-link.expanded .project-card {
-    height: 390px;
+    height: 370px;
   }
 }
 
@@ -389,15 +389,15 @@ html, body {
   }
 
   .projects-grid {
-    height: 370px;
+    height: 350px;
   }
 
   .project-card {
-    height: 270px;
+    height: 250px;
   }
 
   .card-link.expanded .project-card {
-    height: 370px;
+    height: 350px;
   }
 }
 
