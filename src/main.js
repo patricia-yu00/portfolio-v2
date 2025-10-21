@@ -34,7 +34,9 @@ function renderHome() {
             Hey there! I'm Patricia
             <button class="profile-pill" aria-label="View profile">
               <img src="https://api.builder.io/api/v1/image/assets/TEMP/2489a895dad2614ef19df70de9ef72204a4b9b5b?width=232" alt="Patricia profile" class="profile-image" />
-            </button>, a product designer shaping clarity out of complexity.
+            </button>
+            <div style="margin-left: 1px;">,</div>
+            a product designer shaping clarity out of complexity.
           </h1>
         </div>
 
