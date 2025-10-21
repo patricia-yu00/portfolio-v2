@@ -86,7 +86,7 @@ function attachCardHoverHandlers() {
           heroHeading.classList.remove('hero-heading-fade-out')
           heroHeading.classList.add('hero-heading-fade-in')
           currentActiveIndex = 1
-        }, 150)
+        }, 300)
       } else if (index === 2 && currentActiveIndex !== 2) {
         heroHeading.classList.add('hero-heading-fade-out')
         setTimeout(() => {
@@ -96,7 +96,7 @@ function attachCardHoverHandlers() {
           heroHeading.classList.remove('hero-heading-fade-out')
           heroHeading.classList.add('hero-heading-fade-in')
           currentActiveIndex = 2
-        }, 150)
+        }, 300)
       } else if (index === 3 && currentActiveIndex !== 3) {
         heroHeading.classList.add('hero-heading-fade-out')
         setTimeout(() => {
@@ -106,16 +106,26 @@ function attachCardHoverHandlers() {
           heroHeading.classList.remove('hero-heading-fade-out')
           heroHeading.classList.add('hero-heading-fade-in')
           currentActiveIndex = 3
-        }, 150)
-      } else if (index !== 1 && index !== 2 && index !== 3 && (currentActiveIndex === 1 || currentActiveIndex === 2 || currentActiveIndex === 3)) {
-        // Smooth fade back when leaving card 2, 3, or 4
+        }, 300)
+      } else if (index === 4 && currentActiveIndex !== 4) {
+        heroHeading.classList.add('hero-heading-fade-out')
+        setTimeout(() => {
+          heroHeading.innerHTML = `
+            Stimulating smartphone growth & understanding brand switching behavior <img src="https://api.builder.io/api/v1/image/assets/TEMP/349402280f99b7abc5b05d16fb89e713bbe801da?width=97" alt="Google" class="hero-logo" />
+          `
+          heroHeading.classList.remove('hero-heading-fade-out')
+          heroHeading.classList.add('hero-heading-fade-in')
+          currentActiveIndex = 4
+        }, 300)
+      } else if (index !== 1 && index !== 2 && index !== 3 && index !== 4 && (currentActiveIndex === 1 || currentActiveIndex === 2 || currentActiveIndex === 3 || currentActiveIndex === 4)) {
+        // Smooth fade back when leaving card 2, 3, 4, or 5
         heroHeading.classList.add('hero-heading-fade-out')
         setTimeout(() => {
           heroHeading.innerHTML = originalHeroContent
           heroHeading.classList.remove('hero-heading-fade-out')
           heroHeading.classList.add('hero-heading-fade-in')
           currentActiveIndex = null
-        }, 150)
+        }, 300)
       }
     })
 
@@ -125,14 +135,14 @@ function attachCardHoverHandlers() {
         l.classList.remove('expanded')
       })
 
-      if (index === 1 || index === 2 || index === 3) {
+      if (index === 1 || index === 2 || index === 3 || index === 4) {
         heroHeading.classList.add('hero-heading-fade-out')
         setTimeout(() => {
           heroHeading.innerHTML = originalHeroContent
           heroHeading.classList.remove('hero-heading-fade-out')
           heroHeading.classList.add('hero-heading-fade-in')
           currentActiveIndex = null
-        }, 150)
+        }, 300)
       }
     })
   })
