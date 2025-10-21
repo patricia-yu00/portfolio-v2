@@ -87,8 +87,18 @@ function attachCardHoverHandlers() {
           heroHeading.classList.add('hero-heading-fade-in')
           currentActiveIndex = 1
         }, 150)
-      } else if (index !== 1 && currentActiveIndex === 1) {
-        // Smooth fade back when leaving card 2
+      } else if (index === 2 && currentActiveIndex !== 2) {
+        heroHeading.classList.add('hero-heading-fade-out')
+        setTimeout(() => {
+          heroHeading.innerHTML = `
+            Creating a more efficient order management experience for engineers<img src="https://api.builder.io/api/v1/image/assets/TEMP/befe117fa011fa36706d8adf7da93e5248343996?width=80" alt="Verizon" class="hero-logo" />
+          `
+          heroHeading.classList.remove('hero-heading-fade-out')
+          heroHeading.classList.add('hero-heading-fade-in')
+          currentActiveIndex = 2
+        }, 150)
+      } else if (index !== 1 && index !== 2 && (currentActiveIndex === 1 || currentActiveIndex === 2)) {
+        // Smooth fade back when leaving card 2 or 3
         heroHeading.classList.add('hero-heading-fade-out')
         setTimeout(() => {
           heroHeading.innerHTML = originalHeroContent
@@ -105,7 +115,7 @@ function attachCardHoverHandlers() {
         l.classList.remove('expanded')
       })
 
-      if (index === 1) {
+      if (index === 1 || index === 2) {
         heroHeading.classList.add('hero-heading-fade-out')
         setTimeout(() => {
           heroHeading.innerHTML = originalHeroContent
