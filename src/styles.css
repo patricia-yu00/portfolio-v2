@@ -110,14 +110,14 @@ html, body {
   padding: 2rem 0 0 0;
   width: 100%;
   max-width: 100%;
-  height: 401px;
+  height: 381px;
 }
 
 .card-link {
   text-decoration: none;
   color: inherit;
   flex: 1 1 0;
-  transition: flex 1s ease-in-out;
+  transition: flex 0.4s ease-in-out;
 }
 
 .card-link.expanded {
@@ -131,12 +131,12 @@ html, body {
 .project-card {
   cursor: pointer;
   width: 100%;
-  height: 276px;
-  transition: height 1s ease-in-out;
+  height: 256px;
+  transition: height 0.4s ease-in-out;
 }
 
 .card-link.expanded .project-card {
-  height: 401px;
+  height: 381px;
 }
 
 .mouse-enter-trigger {
@@ -160,7 +160,7 @@ html, body {
               0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30);
   overflow: hidden;
   position: relative;
-  transition: box-shadow 1s ease-in-out;
+  transition: box-shadow 0.4s ease-in-out;
   padding: 0;
   margin: 0;
   display: flex;
