@@ -81,30 +81,16 @@ html, body {
   vertical-align: middle;
 }
 
+.hero-heading {
+  transition: opacity 0.3s ease-in-out;
+}
+
 .hero-heading-fade-out {
-  animation: fadeOut 0.15s ease-in-out forwards;
+  opacity: 0;
 }
 
 .hero-heading-fade-in {
-  animation: fadeIn 0.15s ease-in-out forwards;
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  opacity: 1;
 }
 
 .info-bar {
