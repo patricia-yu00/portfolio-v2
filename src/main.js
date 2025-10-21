@@ -81,7 +81,7 @@ function attachCardHoverHandlers() {
         heroHeading.classList.add('hero-heading-fade-out')
         setTimeout(() => {
           heroHeading.innerHTML = `
-            Enhancing AI tools to improve workflows and adoption in finance <img src="https://api.builder.io/api/v1/image/assets/TEMP/53e0801a582dc2ca9d5bcc187c07165f688d51f6?width=140" alt="Moody's" class="hero-logo" />
+            Enhancing AI tools to improve workflows and <div class="hero-highlight">adoption in finance</div><img src="https://api.builder.io/api/v1/image/assets/TEMP/53e0801a582dc2ca9d5bcc187c07165f688d51f6?width=140" alt="Moody's" class="hero-logo" />
           `
           heroHeading.classList.remove('hero-heading-fade-out')
           heroHeading.classList.add('hero-heading-fade-in')
