@@ -97,6 +97,22 @@ html, body {
   opacity: 1;
 }
 
+.hero-content-horizontal {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hero-special-text {
+  display: block;
+}
+
 .info-bar {
   display: flex;
   align-items: center;
