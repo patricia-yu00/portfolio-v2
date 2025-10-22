@@ -231,7 +231,8 @@ function initCardDeck() {
   let dragStartX = 0
   let dragStartY = 0
   let lastHeroIndex = null
-  const DRAG_THRESHOLD = 100
+  let topCardDomIndex = null
+  const DRAG_THRESHOLD = 50
   const CARD_OFFSET = 20
   const CARD_SCALE = 0.05
   const CARD_OPACITY = 0.15
