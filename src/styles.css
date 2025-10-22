@@ -502,10 +502,10 @@ html, body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .projects-grid {
     position: relative;
-    height: 380px;
+    height: 333px;
     width: 100%;
     max-width: 100%;
     perspective: 1000px;
@@ -518,8 +518,47 @@ html, body {
 
   .card-link {
     position: absolute;
-    width: 280px;
-    height: 340px;
+    width: 245px;
+    height: 297px;
+    flex: none;
+    cursor: grab;
+    text-decoration: none;
+    pointer-events: auto;
+    touch-action: none;
+  }
+
+  .project-card {
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .card-link.expanded .project-card {
+    height: 100%;
+  }
+
+  .card-background {
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-grid {
+    position: relative;
+    height: 333px;
+    width: 100%;
+    max-width: 100%;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    touch-action: none;
+  }
+
+  .card-link {
+    position: absolute;
+    width: 245px;
+    height: 297px;
     flex: none;
     cursor: grab;
     text-decoration: none;
