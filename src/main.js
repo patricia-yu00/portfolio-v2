@@ -76,12 +76,13 @@ const CARD_HERO_CONTENT = [
     layout: 'horizontal'
   },
   {
-    text: 'Designing an inclusive autonomous vehicle car-sharing app experience ',
-    highlight: null,
+    text: 'Designing an inclusive autonomous vehicle car-',
+    specialText: 'sharing app experience',
     image: {
       src: 'https://api.builder.io/api/v1/image/assets/TEMP/480e8e6331ebaa9afe5eb428f661d04c61c06970?width=103',
       alt: 'PennDOT'
-    }
+    },
+    layout: 'horizontal'
   },
   {
     text: 'Stimulating smartphone growth & understanding brand switching behavior ',
