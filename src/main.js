@@ -100,12 +100,12 @@ function buildHeroHtml(contentConfig) {
 
   if (contentConfig.layout === 'horizontal' && contentConfig.specialText) {
     return `
-      <div class="hero-content-horizontal">
-        <div class="hero-text-container">
-          <span>${contentConfig.text}</span>
+      <div class="hero-content-block">
+        <div>${contentConfig.text}</div>
+        <div class="hero-special-text-line">
           <span class="hero-special-text">${contentConfig.specialText}</span>
+          <img src="${contentConfig.image.src}" alt="${contentConfig.image.alt}" class="hero-logo" />
         </div>
-        <img src="${contentConfig.image.src}" alt="${contentConfig.image.alt}" class="hero-logo" />
       </div>
     `
   }
