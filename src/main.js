@@ -233,14 +233,14 @@ function initCardDeck() {
   let lastHeroIndex = null
   let topCardDomIndex = null
   const DRAG_THRESHOLD = 50
-  const CARD_SCALE = 0.05
-  const CARD_OPACITY = 0.15
+  const CARD_SCALE = 0.06
+  const CARD_OPACITY = 0.12
 
   // Generate random offsets and rotations for each card position in deck
   const generateRandomOffsets = () => {
     return {
-      y: (Math.random() - 0.5) * 40,
-      x: (Math.random() - 0.5) * 40,
+      y: (Math.random() - 0.5) * 35,
+      x: (Math.random() - 0.5) * 35,
       rotate: (Math.random() - 0.5) * 8
     }
   }
@@ -254,8 +254,8 @@ function initCardDeck() {
 
       const zIndex = cards.length - stackPosition
       const offsets = cardOffsets[stackPosition]
-      const yOffset = stackPosition * 18 + offsets.y
-      const xOffset = stackPosition * 12 + offsets.x
+      const yOffset = stackPosition * 14 + offsets.y
+      const xOffset = stackPosition * 10 + offsets.x
       const baseRotate = offsets.rotate
       const scale = 1 - stackPosition * CARD_SCALE
       const opacity = 1 - stackPosition * CARD_OPACITY
