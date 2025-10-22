@@ -97,20 +97,20 @@ html, body {
   opacity: 1;
 }
 
-.hero-content-horizontal {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.hero-text-container {
+.hero-content-block {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0;
+}
+
+.hero-special-text-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .hero-special-text {
-  display: block;
+  display: inline;
 }
 
 .info-bar {
