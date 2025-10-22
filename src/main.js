@@ -226,40 +226,63 @@ function initCardDeck() {
   if (!grid || !cardLinks.length || window.innerWidth > 768) return
 
   const originalHeroContent = heroHeading.innerHTML
-  let currentCardIndex = 0
+  let cardStack = Array.from({length: cards.length}, (_, i) => i)
   let isDragging = false
   let dragStartX = 0
+  let dragStartY = 0
   let lastHeroIndex = null
+  const DRAG_THRESHOLD = 100
+  const CARD_OFFSET = 20
+  const CARD_SCALE = 0.05
+  const CARD_OPACITY = 0.15
 
-  function updateDeckLayout(skipHeroUpdate = false) {
-    cardLinks.forEach((link, index) => {
-      const offset = (index - currentCardIndex + cards.length) % cards.length
-      const zIndex = cards.length - offset
-      const yOffset = offset * 12
-      const xOffset = offset * 8
-      const scale = 1 - offset * 0.02
+  function updateDeckLayout(skipHeroUpdate = false, dragDelta = 0, dragRotate = 0) {
+    cardLinks.forEach((link, domIndex) => {
+      const stackPosition = cardStack.indexOf(domIndex)
+      if (stackPosition === -1) return
 
-      link.style.zIndex = zIndex
-      link.style.transform = `translateY(${yOffset}px) translateX(${xOffset}px) scale(${scale})`
+      const zIndex = cards.length - stackPosition
+      const yOffset = stackPosition * CARD_OFFSET
+      const xOffset = stackPosition * 8
+      const scale = 1 - stackPosition * CARD_SCALE
+      const opacity = 1 - stackPosition * CARD_OPACITY
+
+      if (stackPosition === 0) {
+        // Top card - apply drag transform
+        link.style.zIndex = zIndex
+        link.style.transform = `translateY(${yOffset}px) translateX(${xOffset + dragDelta}px) scale(${scale}) rotateZ(${dragRotate}deg)`
+        link.style.opacity = opacity
+        link.style.transition = 'none'
+      } else {
+        // Stacked cards - smooth animation
+        link.style.zIndex = zIndex
+        link.style.transform = `translateY(${yOffset}px) translateX(${xOffset}px) scale(${scale}) rotateZ(0deg)`
+        link.style.opacity = opacity
+        link.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease'
+      }
     })
 
-    if (!skipHeroUpdate && lastHeroIndex !== currentCardIndex) {
-      const heroContent = CARD_HERO_CONTENT[currentCardIndex]
-      const nextHtml = heroContent ? buildHeroHtml(heroContent) : originalHeroContent
-      fadeHeroContent(heroHeading, nextHtml)
-      lastHeroIndex = currentCardIndex
+    if (!skipHeroUpdate) {
+      const topCardIndex = cardStack[0]
+      if (lastHeroIndex !== topCardIndex) {
+        const heroContent = CARD_HERO_CONTENT[topCardIndex]
+        const nextHtml = heroContent ? buildHeroHtml(heroContent) : originalHeroContent
+        fadeHeroContent(heroHeading, nextHtml)
+        lastHeroIndex = topCardIndex
+      }
     }
   }
 
   function handleDragEnd(deltaX) {
-    const cardWidth = grid.offsetWidth
-    const threshold = cardWidth / 3
-
-    if (Math.abs(deltaX) > threshold) {
+    if (Math.abs(deltaX) > DRAG_THRESHOLD) {
       if (deltaX > 0) {
-        currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length
+        // Swipe right: move top card to bottom
+        const topCard = cardStack.shift()
+        cardStack.push(topCard)
       } else {
-        currentCardIndex = (currentCardIndex + 1) % cards.length
+        // Swipe left: move bottom card to top
+        const bottomCard = cardStack.pop()
+        cardStack.unshift(bottomCard)
       }
     }
 
@@ -268,35 +291,35 @@ function initCardDeck() {
     updateDeckLayout()
   }
 
-  cardLinks.forEach((link, index) => {
+  cardLinks.forEach((link) => {
     link.addEventListener('pointerdown', (e) => {
-      const topCardIndex = currentCardIndex % cards.length
-      if (index !== topCardIndex) return
+      if (cardStack[0] !== cardLinks.indexOf(link)) return
 
       isDragging = true
       dragStartX = e.clientX
+      dragStartY = e.clientY
       link.classList.add('dragging')
     })
 
     link.addEventListener('pointermove', (e) => {
       if (!isDragging) return
-
-      const topCardIndex = currentCardIndex % cards.length
-      if (index !== topCardIndex) return
+      if (cardStack[0] !== cardLinks.indexOf(link)) return
 
       const deltaX = e.clientX - dragStartX
-      const yOffset = 0 * 12
-      const xOffset = 0 * 8
-      const scale = 1
+      const deltaY = e.clientY - dragStartY
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
 
-      link.style.transform = `translateY(${yOffset}px) translateX(${xOffset + deltaX}px) scale(${scale})`
+      if (distance < 5) return
+
+      const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI)
+      const dragRotate = Math.max(-15, Math.min(15, angle / 10))
+
+      updateDeckLayout(true, deltaX, dragRotate)
     })
 
     link.addEventListener('pointerup', (e) => {
       if (!isDragging) return
-
-      const topCardIndex = currentCardIndex % cards.length
-      if (index !== topCardIndex) return
+      if (cardStack[0] !== cardLinks.indexOf(link)) return
 
       const deltaX = e.clientX - dragStartX
       handleDragEnd(deltaX)
