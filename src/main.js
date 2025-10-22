@@ -220,7 +220,7 @@ function attachCardHoverHandlers() {
 
 function initCardDeck() {
   const grid = document.querySelector('.projects-grid')
-  const cardLinks = document.querySelectorAll('.card-link')
+  const cardLinks = Array.from(document.querySelectorAll('.card-link'))
   const heroHeading = document.querySelector('.hero-heading')
 
   if (!grid || !cardLinks.length || window.innerWidth > 768) return
