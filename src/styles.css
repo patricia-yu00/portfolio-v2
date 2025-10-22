@@ -505,7 +505,7 @@ html, body {
 @media (max-width: 480px) {
   .projects-grid {
     position: relative;
-    height: 420px;
+    height: 380px;
     width: 100%;
     max-width: 100%;
     perspective: 1000px;
@@ -518,8 +518,8 @@ html, body {
 
   .card-link {
     position: absolute;
-    width: 320px;
-    height: 384px;
+    width: 280px;
+    height: 340px;
     flex: none;
     cursor: grab;
     text-decoration: none;
