@@ -257,20 +257,19 @@ function initCardDeck() {
       const xOffset = stackPosition * 10 + offsets.x
       const baseRotate = offsets.rotate
       const scale = 1 - stackPosition * CARD_SCALE
-      const opacity = 1 - stackPosition * CARD_OPACITY
 
       if (stackPosition === 0) {
         // Top card - apply drag transform
         link.style.zIndex = zIndex
         link.style.transform = `translateY(${yOffset}px) translateX(${xOffset + dragDelta}px) scale(${scale}) rotateZ(${baseRotate + dragRotate}deg)`
-        link.style.opacity = opacity
+        link.style.opacity = '1'
         link.style.transition = 'none'
       } else {
         // Stacked cards - smooth animation
         link.style.zIndex = zIndex
         link.style.transform = `translateY(${yOffset}px) translateX(${xOffset}px) scale(${scale}) rotateZ(${baseRotate}deg)`
-        link.style.opacity = opacity
-        link.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease'
+        link.style.opacity = '1'
+        link.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)'
       }
     })
 
