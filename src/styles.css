@@ -453,20 +453,23 @@ html, body {
 @media (max-width: 768px) {
   .projects-grid {
     position: relative;
-    height: 280px;
+    height: 420px;
     width: 100%;
     max-width: 100%;
     perspective: 1000px;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
   }
 
   .card-link {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 320px;
+    height: 384px;
     flex: none;
-    transition: transform 0.3s ease-out;
     cursor: grab;
+    text-decoration: none;
   }
 
   .card-link.dragging {
@@ -482,12 +485,17 @@ html, body {
   }
 
   .project-card {
+    width: 100%;
     height: 100%;
-    border-radius: 16px;
+    border-radius: 20px;
   }
 
   .card-link.expanded .project-card {
     height: 100%;
+  }
+
+  .card-background {
+    border-radius: 20px;
   }
 }
 
