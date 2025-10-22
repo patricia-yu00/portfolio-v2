@@ -511,6 +511,16 @@ html, body {
     width: 245px;
     height: 297px;
   }
+
+  .resume-card {
+    background: transparent;
+    overflow: visible;
+    box-shadow: none;
+  }
+
+  .card-background {
+    border-radius: 20px;
+  }
 }
 
 @media (max-width: 640px) {
