@@ -288,6 +288,7 @@ function initCardDeck() {
     }
 
     isDragging = false
+    topCardDomIndex = null
     cardLinks.forEach(link => link.classList.remove('dragging'))
     updateDeckLayout()
   }
