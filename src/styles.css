@@ -475,17 +475,6 @@ html, body {
     touch-action: none;
   }
 
-  @media (max-width: 640px) {
-    .projects-grid {
-      height: 333px;
-    }
-
-    .card-link {
-      width: 245px;
-      height: 297px;
-    }
-  }
-
   .card-link.dragging {
     cursor: grabbing;
   }
@@ -510,6 +499,17 @@ html, body {
 
   .card-background {
     border-radius: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .projects-grid {
+    height: 333px;
+  }
+
+  .card-link {
+    width: 245px;
+    height: 297px;
   }
 }
 
