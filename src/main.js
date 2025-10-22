@@ -233,9 +233,19 @@ function initCardDeck() {
   let lastHeroIndex = null
   let topCardDomIndex = null
   const DRAG_THRESHOLD = 50
-  const CARD_OFFSET = 20
   const CARD_SCALE = 0.05
   const CARD_OPACITY = 0.15
+
+  // Generate random offsets and rotations for each card position in deck
+  const generateRandomOffsets = () => {
+    return {
+      y: (Math.random() - 0.5) * 40,
+      x: (Math.random() - 0.5) * 40,
+      rotate: (Math.random() - 0.5) * 8
+    }
+  }
+
+  const cardOffsets = Array.from({length: cards.length}, generateRandomOffsets)
 
   function updateDeckLayout(skipHeroUpdate = false, dragDelta = 0, dragRotate = 0) {
     cardLinks.forEach((link, domIndex) => {
@@ -243,21 +253,23 @@ function initCardDeck() {
       if (stackPosition === -1) return
 
       const zIndex = cards.length - stackPosition
-      const yOffset = stackPosition * CARD_OFFSET
-      const xOffset = stackPosition * 8
+      const offsets = cardOffsets[stackPosition]
+      const yOffset = stackPosition * 18 + offsets.y
+      const xOffset = stackPosition * 12 + offsets.x
+      const baseRotate = offsets.rotate
       const scale = 1 - stackPosition * CARD_SCALE
       const opacity = 1 - stackPosition * CARD_OPACITY
 
       if (stackPosition === 0) {
         // Top card - apply drag transform
         link.style.zIndex = zIndex
-        link.style.transform = `translateY(${yOffset}px) translateX(${xOffset + dragDelta}px) scale(${scale}) rotateZ(${dragRotate}deg)`
+        link.style.transform = `translateY(${yOffset}px) translateX(${xOffset + dragDelta}px) scale(${scale}) rotateZ(${baseRotate + dragRotate}deg)`
         link.style.opacity = opacity
         link.style.transition = 'none'
       } else {
         // Stacked cards - smooth animation
         link.style.zIndex = zIndex
-        link.style.transform = `translateY(${yOffset}px) translateX(${xOffset}px) scale(${scale}) rotateZ(0deg)`
+        link.style.transform = `translateY(${yOffset}px) translateX(${xOffset}px) scale(${scale}) rotateZ(${baseRotate}deg)`
         link.style.opacity = opacity
         link.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease'
       }
