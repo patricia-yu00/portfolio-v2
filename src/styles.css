@@ -461,6 +461,7 @@ html, body {
     justify-content: center;
     align-items: center;
     padding: 0;
+    touch-action: none;
   }
 
   .card-link {
@@ -470,6 +471,8 @@ html, body {
     flex: none;
     cursor: grab;
     text-decoration: none;
+    pointer-events: auto;
+    touch-action: none;
   }
 
   .card-link.dragging {
