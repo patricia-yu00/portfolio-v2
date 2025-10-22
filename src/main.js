@@ -67,12 +67,13 @@ const CARD_HERO_CONTENT = [
     }
   },
   {
-    text: 'Creating a more efficient order management experience for engineers ',
-    highlight: null,
+    text: 'Creating a more efficient order management ',
+    specialText: 'experience for engineers',
     image: {
       src: 'https://api.builder.io/api/v1/image/assets/TEMP/befe117fa011fa36706d8adf7da93e5248343996?width=80',
       alt: 'Verizon'
-    }
+    },
+    layout: 'horizontal'
   },
   {
     text: 'Designing an inclusive autonomous vehicle car-sharing app experience ',
@@ -96,6 +97,18 @@ const FADE_DURATION = 350
 
 function buildHeroHtml(contentConfig) {
   if (!contentConfig) return ''
+
+  if (contentConfig.layout === 'horizontal' && contentConfig.specialText) {
+    return `
+      <div class="hero-content-horizontal">
+        <div class="hero-text-container">
+          <span>${contentConfig.text}</span>
+          <span class="hero-special-text">${contentConfig.specialText}</span>
+        </div>
+        <img src="${contentConfig.image.src}" alt="${contentConfig.image.alt}" class="hero-logo" />
+      </div>
+    `
+  }
 
   const highlightPart = contentConfig.highlight
     ? `<div class="hero-highlight">${contentConfig.highlight}</div>`
