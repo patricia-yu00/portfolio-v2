@@ -227,11 +227,11 @@ function initCardDeck() {
 
   const originalHeroContent = heroHeading.innerHTML
   let currentCardIndex = 0
-  let dragStartX = 0
   let isDragging = false
-  const cardWidth = grid.offsetWidth
+  let dragStartX = 0
+  let lastHeroIndex = null
 
-  function updateDeckLayout() {
+  function updateDeckLayout(skipHeroUpdate = false) {
     cardLinks.forEach((link, index) => {
       const offset = (index - currentCardIndex + cards.length) % cards.length
       const zIndex = cards.length - offset
@@ -243,20 +243,22 @@ function initCardDeck() {
       link.style.transform = `translateY(${yOffset}px) translateX(${xOffset}px) scale(${scale})`
     })
 
-    const heroContent = CARD_HERO_CONTENT[currentCardIndex]
-    const nextHtml = heroContent ? buildHeroHtml(heroContent) : originalHeroContent
-    fadeHeroContent(heroHeading, nextHtml)
+    if (!skipHeroUpdate && lastHeroIndex !== currentCardIndex) {
+      const heroContent = CARD_HERO_CONTENT[currentCardIndex]
+      const nextHtml = heroContent ? buildHeroHtml(heroContent) : originalHeroContent
+      fadeHeroContent(heroHeading, nextHtml)
+      lastHeroIndex = currentCardIndex
+    }
   }
 
   function handleDragEnd(deltaX) {
+    const cardWidth = grid.offsetWidth
     const threshold = cardWidth / 3
 
     if (Math.abs(deltaX) > threshold) {
       if (deltaX > 0) {
-        // Dragged right: go to previous card
         currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length
       } else {
-        // Dragged left: go to next card
         currentCardIndex = (currentCardIndex + 1) % cards.length
       }
     }
@@ -267,35 +269,37 @@ function initCardDeck() {
   }
 
   cardLinks.forEach((link, index) => {
-    let startX = 0
-
     link.addEventListener('pointerdown', (e) => {
+      const topCardIndex = currentCardIndex % cards.length
+      if (index !== topCardIndex) return
+
       isDragging = true
-      startX = e.clientX
+      dragStartX = e.clientX
       link.classList.add('dragging')
     })
 
     link.addEventListener('pointermove', (e) => {
       if (!isDragging) return
 
-      const deltaX = e.clientX - startX
-      const topCard = (currentCardIndex % cards.length)
+      const topCardIndex = currentCardIndex % cards.length
+      if (index !== topCardIndex) return
 
-      // Only allow dragging the top card
-      if (index === topCard) {
-        link.style.transform = `translateX(${deltaX}px)`
-      }
+      const deltaX = e.clientX - dragStartX
+      const yOffset = 0 * 12
+      const xOffset = 0 * 8
+      const scale = 1
+
+      link.style.transform = `translateY(${yOffset}px) translateX(${xOffset + deltaX}px) scale(${scale})`
     })
 
     link.addEventListener('pointerup', (e) => {
       if (!isDragging) return
 
-      const deltaX = e.clientX - startX
-      const topCard = (currentCardIndex % cards.length)
+      const topCardIndex = currentCardIndex % cards.length
+      if (index !== topCardIndex) return
 
-      if (index === topCard) {
-        handleDragEnd(deltaX)
-      }
+      const deltaX = e.clientX - dragStartX
+      handleDragEnd(deltaX)
     })
 
     link.addEventListener('pointercancel', () => {
