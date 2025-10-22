@@ -292,25 +292,23 @@ function initCardDeck() {
     updateDeckLayout()
   }
 
-  cardLinks.forEach((link) => {
+  cardLinks.forEach((link, domIndex) => {
     link.addEventListener('pointerdown', (e) => {
-      if (cardStack[0] !== cardLinks.indexOf(link)) return
+      const topCardDomIdx = cardStack[0]
+      if (topCardDomIdx !== domIndex) return
 
       isDragging = true
       dragStartX = e.clientX
       dragStartY = e.clientY
+      topCardDomIndex = domIndex
       link.classList.add('dragging')
     })
 
     link.addEventListener('pointermove', (e) => {
-      if (!isDragging) return
-      if (cardStack[0] !== cardLinks.indexOf(link)) return
+      if (!isDragging || topCardDomIndex !== domIndex) return
 
       const deltaX = e.clientX - dragStartX
       const deltaY = e.clientY - dragStartY
-      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
-
-      if (distance < 5) return
 
       const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI)
       const dragRotate = Math.max(-15, Math.min(15, angle / 10))
@@ -319,16 +317,17 @@ function initCardDeck() {
     })
 
     link.addEventListener('pointerup', (e) => {
-      if (!isDragging) return
-      if (cardStack[0] !== cardLinks.indexOf(link)) return
+      if (!isDragging || topCardDomIndex !== domIndex) return
 
       const deltaX = e.clientX - dragStartX
       handleDragEnd(deltaX)
     })
 
     link.addEventListener('pointercancel', () => {
+      if (topCardDomIndex !== domIndex) return
       isDragging = false
       link.classList.remove('dragging')
+      topCardDomIndex = null
       updateDeckLayout()
     })
   })
