@@ -500,6 +500,12 @@ html, body {
   .card-background {
     border-radius: 20px;
   }
+
+  .resume-card {
+    background: transparent;
+    overflow: visible;
+    box-shadow: none;
+  }
 }
 
 @media (max-width: 640px) {
