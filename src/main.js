@@ -172,43 +172,139 @@ function attachCardHoverHandlers() {
 
   cardLinks.forEach((link, cardIndex) => {
     link.addEventListener('mouseenter', () => {
-      // Expand/compress via your existing helper
-      updateCardExpansion(cardLinks, link)
+      // Only apply hover behavior on desktop
+      if (window.innerWidth > 768) {
+        // Expand/compress via your existing helper
+        updateCardExpansion(cardLinks, link)
 
-      // Always fade when switching to a different card
-      if (currentActiveCardIndex !== cardIndex) {
-        const heroContent = CARD_HERO_CONTENT[cardIndex]
-        const nextHtml = heroContent ? buildHeroHtml(heroContent) : originalHeroContent
+        // Always fade when switching to a different card
+        if (currentActiveCardIndex !== cardIndex) {
+          const heroContent = CARD_HERO_CONTENT[cardIndex]
+          const nextHtml = heroContent ? buildHeroHtml(heroContent) : originalHeroContent
 
-        // Run the fade swap; update the active index after swap
-        fadeHeroContent(heroHeading, nextHtml, () => {
-          currentActiveCardIndex = cardIndex
-        })
+          // Run the fade swap; update the active index after swap
+          fadeHeroContent(heroHeading, nextHtml, () => {
+            currentActiveCardIndex = cardIndex
+          })
+        }
       }
     })
 
     link.addEventListener('mouseleave', (e) => {
-      // If we're moving to another card inside the grid, do NOT reset hero;
-      // let the next mouseenter handle the fade to the new card.
-      const toEl = e.relatedTarget
-      const movingInsideAnotherCard =
-        !!toEl && (!!toEl.closest && !!toEl.closest('.card-link') && grid && grid.contains(toEl))
+      // Only apply hover behavior on desktop
+      if (window.innerWidth > 768) {
+        // If we're moving to another card inside the grid, do NOT reset hero;
+        // let the next mouseenter handle the fade to the new card.
+        const toEl = e.relatedTarget
+        const movingInsideAnotherCard =
+          !!toEl && (!!toEl.closest && !!toEl.closest('.card-link') && grid && grid.contains(toEl))
 
-      if (movingInsideAnotherCard) return
+        if (movingInsideAnotherCard) return
 
-      // We left the grid (or to a non-card area): clear expansion classes
-      cardLinks.forEach(l => {
-        l.classList.remove('compressed', 'expanded')
-      })
-
-      // Fade back to original only when leaving card area entirely
-      if (currentActiveCardIndex !== null) {
-        fadeHeroContent(heroHeading, originalHeroContent, () => {
-          currentActiveCardIndex = null
+        // We left the grid (or to a non-card area): clear expansion classes
+        cardLinks.forEach(l => {
+          l.classList.remove('compressed', 'expanded')
         })
+
+        // Fade back to original only when leaving card area entirely
+        if (currentActiveCardIndex !== null) {
+          fadeHeroContent(heroHeading, originalHeroContent, () => {
+            currentActiveCardIndex = null
+          })
+        }
       }
     })
   })
+}
+
+function initCardDeck() {
+  const grid = document.querySelector('.projects-grid')
+  const cardLinks = document.querySelectorAll('.card-link')
+  const heroHeading = document.querySelector('.hero-heading')
+
+  if (!grid || !cardLinks.length || window.innerWidth > 768) return
+
+  const originalHeroContent = heroHeading.innerHTML
+  let currentCardIndex = 0
+  let dragStartX = 0
+  let isDragging = false
+  const cardWidth = grid.offsetWidth
+
+  function updateDeckLayout() {
+    cardLinks.forEach((link, index) => {
+      const offset = (index - currentCardIndex + cards.length) % cards.length
+      const zIndex = cards.length - offset
+      const yOffset = offset * 12
+      const xOffset = offset * 8
+      const scale = 1 - offset * 0.02
+
+      link.style.zIndex = zIndex
+      link.style.transform = `translateY(${yOffset}px) translateX(${xOffset}px) scale(${scale})`
+    })
+
+    const heroContent = CARD_HERO_CONTENT[currentCardIndex]
+    const nextHtml = heroContent ? buildHeroHtml(heroContent) : originalHeroContent
+    fadeHeroContent(heroHeading, nextHtml)
+  }
+
+  function handleDragEnd(deltaX) {
+    const threshold = cardWidth / 3
+
+    if (Math.abs(deltaX) > threshold) {
+      if (deltaX > 0) {
+        // Dragged right: go to previous card
+        currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length
+      } else {
+        // Dragged left: go to next card
+        currentCardIndex = (currentCardIndex + 1) % cards.length
+      }
+    }
+
+    isDragging = false
+    cardLinks.forEach(link => link.classList.remove('dragging'))
+    updateDeckLayout()
+  }
+
+  cardLinks.forEach((link, index) => {
+    let startX = 0
+
+    link.addEventListener('pointerdown', (e) => {
+      isDragging = true
+      startX = e.clientX
+      link.classList.add('dragging')
+    })
+
+    link.addEventListener('pointermove', (e) => {
+      if (!isDragging) return
+
+      const deltaX = e.clientX - startX
+      const topCard = (currentCardIndex % cards.length)
+
+      // Only allow dragging the top card
+      if (index === topCard) {
+        link.style.transform = `translateX(${deltaX}px)`
+      }
+    })
+
+    link.addEventListener('pointerup', (e) => {
+      if (!isDragging) return
+
+      const deltaX = e.clientX - startX
+      const topCard = (currentCardIndex % cards.length)
+
+      if (index === topCard) {
+        handleDragEnd(deltaX)
+      }
+    })
+
+    link.addEventListener('pointercancel', () => {
+      isDragging = false
+      link.classList.remove('dragging')
+      updateDeckLayout()
+    })
+  })
+
+  updateDeckLayout()
 }
 
 
