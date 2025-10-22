@@ -85,8 +85,8 @@ const CARD_HERO_CONTENT = [
     layout: 'horizontal'
   },
   {
-    text: 'Stimulating smartphone',
-    specialText: 'growth & understanding brand switching behavior',
+    text: 'Stimulating smartphone growth & understanding ',
+    specialText: 'brand switching behavior',
     image: {
       src: 'https://api.builder.io/api/v1/image/assets/TEMP/349402280f99b7abc5b05d16fb89e713bbe801da?width=97',
       alt: 'Google'
