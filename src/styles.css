@@ -632,5 +632,26 @@ html, body {
 
   .card-background {
     border-radius: 20px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .resume-card {
+    background: transparent;
+    overflow: visible;
+    box-shadow: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .resume-stack {
+    width: 100%;
+    height: 100%;
+  }
+
+  .resume-layer {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
   }
 }
