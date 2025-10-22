@@ -54,6 +54,7 @@ function renderHome() {
   `
 
   attachCardHoverHandlers()
+  initCardDeck()
 }
 
 const CARD_HERO_CONTENT = [
