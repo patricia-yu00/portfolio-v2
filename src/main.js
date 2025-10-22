@@ -289,13 +289,18 @@ function initCardDeck() {
   function handleDragEnd(deltaX) {
     if (Math.abs(deltaX) > DRAG_THRESHOLD) {
       if (deltaX > 0) {
-        // Swipe right: move top card to bottom
+        // Swipe right: move top card to bottom with new random offset
         const topCard = cardStack.shift()
         cardStack.push(topCard)
+        // Generate new random position for the card that went to the back
+        cardOffsets[cards.length - 1] = generateRandomOffsets()
       } else {
-        // Swipe left: move bottom card to top
+        // Swipe left: move bottom card to top with new random offset
         const bottomCard = cardStack.pop()
         cardStack.unshift(bottomCard)
+        // Shift offsets so the new top card (previously bottom) has its offset at position 0
+        cardOffsets.unshift(generateRandomOffsets())
+        cardOffsets.pop()
       }
     }
 
