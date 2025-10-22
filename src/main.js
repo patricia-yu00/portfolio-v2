@@ -343,6 +343,10 @@ route()
 window.addEventListener('hashchange', route)
 setInterval(updateNYCTime, 1000)
 
+window.addEventListener('resize', () => {
+  route()
+})
+
 if (import.meta.hot) {
   import.meta.hot.accept()
 }
