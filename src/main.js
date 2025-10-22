@@ -234,7 +234,6 @@ function initCardDeck() {
   let topCardDomIndex = null
   const DRAG_THRESHOLD = 50
   const CARD_SCALE = 0.06
-  const CARD_OPACITY = 0.12
 
   // Generate random offsets and rotations for each card position in deck
   const generateRandomOffsets = () => {
