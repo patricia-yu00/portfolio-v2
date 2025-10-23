@@ -676,6 +676,8 @@ html, body {
   top: 0;
   left: 0;
   cursor: default;
+  display: block;
+  text-decoration: none;
 }
 
 .stacked-card-0 {
