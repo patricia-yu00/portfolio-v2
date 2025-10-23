@@ -23,7 +23,13 @@ function updateNYCTime() {
 
 function renderHome() {
   const cardHtml = cards
-    .map((c) => `<a class="card-link" href="${c.link}" aria-label="Open ${c.slug} case">${renderCard(c)}</a>`)
+    .map((c) => {
+      if (c.stack) {
+        // Stack cards have their own anchor elements inside
+        return `<div class="card-link card-stack-wrapper" data-card="${c.slug}">${renderCard(c)}</div>`
+      }
+      return `<a class="card-link" href="${c.link}" aria-label="Open ${c.slug} case">${renderCard(c)}</a>`
+    })
     .join('')
 
   root.innerHTML = `
