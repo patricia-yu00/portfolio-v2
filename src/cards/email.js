@@ -6,7 +6,8 @@ const emailCard = {
   background: 'transparent',
   content: `
     <img src="${emailImg}" alt="Email" class="card-cover-image" />
-  `
+  `,
+  link: 'mailto:contact@example.com'
 }
 
 export default emailCard
