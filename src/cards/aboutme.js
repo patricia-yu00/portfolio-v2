@@ -6,7 +6,8 @@ const aboutmeCard = {
   background: 'transparent',
   content: `
     <img src="${aboutmeImg}" alt="About Me" class="card-cover-image" />
-  `
+  `,
+  link: '#/about'
 }
 
 export default aboutmeCard
