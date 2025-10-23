@@ -6,7 +6,8 @@ const resumeCard = {
   background: 'transparent',
   content: `
     <img src="${resumeImg}" alt="Resume" class="card-cover-image" />
-  `
+  `,
+  link: '#/resume'
 }
 
 export default resumeCard
