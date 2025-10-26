@@ -49,10 +49,26 @@ export const cardsData = [
     background: 'transparent',
     image: resumeImg,
     alt: 'Resume',
+    expandableStack: true,
     stack: [
-      { slug: 'resume', background: 'transparent', image: resumeImg, alt: 'Resume' },
-      { slug: 'aboutme', background: 'transparent', image: aboutmeImg, alt: 'About Me' },
-      { slug: 'email', background: 'transparent', image: emailImg, alt: 'Email' }
+      {
+        slug: 'resume',
+        label: 'Resume',
+        background: '#20767B',
+        href: '/resume'
+      },
+      {
+        slug: 'aboutme',
+        label: 'About Me',
+        background: '#20577B',
+        href: '/about'
+      },
+      {
+        slug: 'email',
+        label: 'Email',
+        background: '#20437B',
+        mailto: 'mailto:patriciayu58@yahoo.com'
+      }
     ]
   }
 ]
