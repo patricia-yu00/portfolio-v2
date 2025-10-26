@@ -55,50 +55,54 @@ export default function ProjectCard({
   if (isExpanded) state = 'expanded'
   if (isCompressed) state = 'compressed'
 
-  if (card.stack) {
-    return (
-      <motion.div
-        className="card-link"
-        variants={cardVariants}
-        animate={state}
-        onMouseEnter={onHover}
-        onMouseLeave={onHoverEnd}
-        ref={cardLink}
-      >
-        <motion.div
-          className="project-card card-stack"
-          variants={projectCardVariants}
-          animate={state}
-        >
-          <div className="card-inner">
-            <div className="resume-stack">
-              {card.stack.map((stackCard, index) => (
-                <motion.div
-                  key={index}
-                  className="resume-layer"
-                  style={{
-                    zIndex: card.stack.length - index,
-                    transform: `translate(${index * 6}px, ${index * 6}px)`
-                  }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: index * 0.05 }}
-                >
-                  <img
-                    src={stackCard.image}
-                    alt={stackCard.alt}
-                    className="card-cover-image"
-                  />
-                </motion.div>
-              ))}
-            </div>
+  const cardContent = (
+    <motion.div
+      className="project-card"
+      variants={projectCardVariants}
+      animate={state}
+    >
+      <div className="card-inner">
+        {card.stack ? (
+          <div className="resume-stack">
+            {card.stack.map((stackCard, index) => (
+              <motion.div
+                key={index}
+                className="resume-layer"
+                style={{
+                  zIndex: card.stack.length - index,
+                  transform: `translate(${index * 6}px, ${index * 6}px)`
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.05 }}
+              >
+                <img
+                  src={stackCard.image}
+                  alt={stackCard.alt}
+                  className="card-cover-image"
+                />
+              </motion.div>
+            ))}
           </div>
-        </motion.div>
-      </motion.div>
-    )
-  }
+        ) : (
+          <motion.div
+            className="card-background"
+            style={{ background: card.background }}
+            variants={shadowVariants}
+            animate={state}
+          >
+            <img
+              src={card.image}
+              alt={card.alt}
+              className="card-cover-image"
+            />
+          </motion.div>
+        )}
+      </div>
+    </motion.div>
+  )
 
-  return (
+  const wrapper = (
     <motion.div
       className="card-link"
       variants={cardVariants}
@@ -107,31 +111,26 @@ export default function ProjectCard({
       onMouseLeave={onHoverEnd}
       ref={cardLink}
     >
-      <Link to={`/case/${card.slug}`} style={{ textDecoration: 'none' }}>
-        <motion.div
-          className="project-card"
-          variants={projectCardVariants}
-          animate={state}
-        >
-          <motion.div
-            className="card-inner"
-            style={{ cursor: 'pointer' }}
-          >
-            <motion.div
-              className="card-background"
-              style={{ background: card.background }}
-              variants={shadowVariants}
-              animate={state}
-            >
-              <img
-                src={card.image}
-                alt={card.alt}
-                className="card-cover-image"
-              />
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </Link>
+      {cardContent}
     </motion.div>
+  )
+
+  if (card.stack || !card.slug) {
+    return wrapper
+  }
+
+  return (
+    <Link to={`/case/${card.slug}`} style={{ textDecoration: 'none' }}>
+      <motion.div
+        className="card-link"
+        variants={cardVariants}
+        animate={state}
+        onMouseEnter={onHover}
+        onMouseLeave={onHoverEnd}
+        ref={cardLink}
+      >
+        {cardContent}
+      </motion.div>
+    </Link>
   )
 }
