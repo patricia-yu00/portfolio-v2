@@ -18,14 +18,14 @@ export default function ExpandableCardStack({ cards, isExpanded, isCompressed, o
       }
     }
 
-    // Expanded state - diagonal expansion from top-left
+    // Expanded state - diagonal expansion up and to the left
     const diagonalOffset = 110
     const baseScale = 1 + (index * 0.1)
     const scale = isHovered ? baseScale * 1.05 : baseScale
 
     return {
-      x: index * diagonalOffset,
-      y: index * diagonalOffset,
+      x: -index * diagonalOffset,
+      y: -index * diagonalOffset,
       rotate: 0,
       scale: scale,
       zIndex: isHovered ? 110 : 103 - index
