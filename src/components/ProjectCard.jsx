@@ -59,6 +59,19 @@ export default function ProjectCard({
   if (isExpanded) state = 'expanded'
   if (isCompressed) state = 'compressed'
 
+  // Use expandable card stack for special stacked cards
+  if (card.expandableStack && card.stack) {
+    return (
+      <ExpandableCardStack
+        cards={card.stack}
+        isExpanded={isExpanded}
+        isCompressed={isCompressed}
+        onHover={onHover}
+        onHoverEnd={onHoverEnd}
+      />
+    )
+  }
+
   const cardContent = (
     <motion.div
       className="project-card"
@@ -66,44 +79,18 @@ export default function ProjectCard({
       animate={state}
     >
       <div className="card-inner">
-        {card.stack ? (
-          <div className="resume-stack">
-            {card.stack.map((stackCard, index) => (
-              <motion.div
-                key={index}
-                className="resume-layer"
-                style={{
-                  zIndex: card.stack.length - index,
-                  transform: `translate(${index * 6}px, ${index * 6}px)`
-                }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <div className="resume-card-background">
-                  <img
-                    src={stackCard.image}
-                    alt={stackCard.alt}
-                    className="card-cover-image"
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        ) : (
-          <motion.div
-            className="card-background"
-            style={{ background: card.background }}
-            variants={shadowVariants}
-            animate={state}
-          >
-            <img
-              src={card.image}
-              alt={card.alt}
-              className="card-cover-image"
-            />
-          </motion.div>
-        )}
+        <motion.div
+          className="card-background"
+          style={{ background: card.background }}
+          variants={shadowVariants}
+          animate={state}
+        >
+          <img
+            src={card.image}
+            alt={card.alt}
+            className="card-cover-image"
+          />
+        </motion.div>
       </div>
     </motion.div>
   )
@@ -121,7 +108,7 @@ export default function ProjectCard({
     </motion.div>
   )
 
-  if (card.stack || !card.slug) {
+  if (!card.slug) {
     return wrapper
   }
 
