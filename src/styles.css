@@ -776,10 +776,17 @@ html, body {
 
   .expandable-card {
     pointer-events: auto;
+    width: 280px;
   }
 
   .expandable-card-text {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(3rem, 8vw, 4rem);
+    width: auto;
+    max-width: 200px;
+  }
+
+  .expandable-card-inner {
+    padding: 25px 15px;
   }
 }
 
