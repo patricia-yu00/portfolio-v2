@@ -544,19 +544,28 @@ html, body {
   .resume-layer {
     width: 100%;
     height: 100%;
-    border-radius: 20px;
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  .resume-card-background {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
     box-shadow: 0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15),
                 0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30);
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .resume-layer img {
+  .resume-card-background .card-cover-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 }
 
@@ -669,19 +678,28 @@ html, body {
   .resume-layer {
     width: 100%;
     height: 100%;
-    border-radius: 20px;
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  .resume-card-background {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
     box-shadow: 0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15),
                 0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30);
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .resume-layer img {
+  .resume-card-background .card-cover-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 }
 
