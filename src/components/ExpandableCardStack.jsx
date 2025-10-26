@@ -19,7 +19,7 @@ export default function ExpandableCardStack({ cards, isExpanded, isCompressed, o
     }
 
     // Expanded state - diagonal expansion up and to the left
-    const diagonalOffset = 110
+    const diagonalOffset = 60
     const baseScale = 1 + (index * 0.1)
     const scale = isHovered ? baseScale * 1.05 : baseScale
 
