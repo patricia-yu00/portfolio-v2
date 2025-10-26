@@ -732,7 +732,7 @@ html, body {
   width: 195px;
   height: 100%;
   pointer-events: auto;
-  transform-origin: top left;
+  transform-origin: top right;
 }
 
 .expandable-card-inner {
