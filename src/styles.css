@@ -159,6 +159,8 @@ html, body {
   color: inherit;
   flex: 1 1 0;
   transition: flex 0.4s ease-in-out;
+  will-change: flex, transform;
+  contain: layout style paint;
 }
 
 .card-link.expanded {
