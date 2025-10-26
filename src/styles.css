@@ -414,7 +414,7 @@ html, body {
 @media (max-width: 1200px) {
   .projects-grid {
     height: 370px;
-    padding: 2rem 2rem 0 0;
+    padding: 2rem 0 0 2rem;
   }
 
   .project-card {
