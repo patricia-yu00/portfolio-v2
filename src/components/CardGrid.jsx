@@ -193,22 +193,15 @@ export default function CardGrid({ onCardHover }) {
       ref={gridRef}
     >
       {cardsData.map((card, index) => (
-        <motion.div
+        <ProjectCard
           key={index}
-          variants={cardVariants}
-          ref={(el) => {
-            if (el) cardRefsRef.current[index] = el
-          }}
-        >
-          <ProjectCard
-            card={card}
-            isExpanded={expandedIndex === index}
-            isCompressed={expandedIndex !== null && expandedIndex !== index}
-            onHover={() => handleCardHover(index)}
-            onHoverEnd={handleCardHoverEnd}
-            cardLink={cardRefsRef.current[index]}
-          />
-        </motion.div>
+          card={card}
+          isExpanded={expandedIndex === index}
+          isCompressed={expandedIndex !== null && expandedIndex !== index}
+          onHover={() => handleCardHover(index)}
+          onHoverEnd={handleCardHoverEnd}
+          cardLink={cardRefsRef.current[index]}
+        />
       ))}
     </motion.div>
   )
