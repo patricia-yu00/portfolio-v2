@@ -8,28 +8,23 @@ export default function ExpandableCardStack({ cards, isExpanded, isCompressed, o
 
   const getCardTransform = (index, isHovered) => {
     if (!isStackHovered) {
+      // Stacked state - offset cards slightly so you can see them
       return {
-        x: index * 6,
-        y: index * 6,
+        x: index * 15,
+        y: index * 10,
         rotate: 0,
         scale: 1,
         zIndex: cards.length - index
       }
     }
 
-    const transforms = [
-      { x: 0, y: 0, rotate: 0 },
-      { x: -140, y: -60, rotate: -3 },
-      { x: -280, y: -120, rotate: -6 }
-    ]
-
-    const transform = transforms[index] || transforms[0]
-
+    // Expanded state - spread cards to the left
+    const offsetPerCard = 210
     return {
-      x: transform.x,
-      y: transform.y,
-      rotate: transform.rotate,
-      scale: isHovered ? 1.05 : 1,
+      x: -index * offsetPerCard,
+      y: 0,
+      rotate: 0,
+      scale: isHovered ? 1.02 : 1,
       zIndex: isHovered ? 110 : 103 - index
     }
   }
