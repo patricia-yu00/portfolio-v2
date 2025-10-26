@@ -159,7 +159,7 @@ html, body {
   text-decoration: none;
   color: inherit;
   flex: 1 1 0;
-  transition: flex 0.4s ease-in-out;
+  transition: flex 0.2s ease-in-out;
   will-change: flex, transform;
   contain: layout style paint;
 }
@@ -176,7 +176,7 @@ html, body {
   cursor: pointer;
   width: 100%;
   height: 256px;
-  transition: height 0.4s ease-in-out;
+  transition: height 0.2s ease-in-out;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
