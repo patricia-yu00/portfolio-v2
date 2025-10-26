@@ -713,6 +713,7 @@ html, body {
 .expandable-card-stack-wrapper {
   position: relative;
   overflow: visible;
+  padding-right: 2rem;
 }
 
 .expandable-card-stack {
@@ -730,6 +731,7 @@ html, body {
   width: 195px;
   height: 100%;
   pointer-events: auto;
+  transform-origin: top left;
 }
 
 .expandable-card-inner {
