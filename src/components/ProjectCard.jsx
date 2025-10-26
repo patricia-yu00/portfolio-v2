@@ -79,11 +79,13 @@ export default function ProjectCard({
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.05 }}
               >
-                <img
-                  src={stackCard.image}
-                  alt={stackCard.alt}
-                  className="card-cover-image"
-                />
+                <div className="resume-card-background">
+                  <img
+                    src={stackCard.image}
+                    alt={stackCard.alt}
+                    className="card-cover-image"
+                  />
+                </div>
               </motion.div>
             ))}
           </div>
