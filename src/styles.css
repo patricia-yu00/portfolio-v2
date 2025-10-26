@@ -7,6 +7,7 @@
 html, body {
   height: 100%;
   font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  scrollbar-gutter: stable;
 }
 
 .portfolio-container {
@@ -148,17 +149,20 @@ html, body {
   display: flex;
   gap: 0.5rem;
   align-items: flex-end;
-  padding: 2rem 0 0 0;
+  padding: 2rem 0 0 2rem;
   width: 100%;
   max-width: 100%;
   height: 381px;
+  overflow: visible;
 }
 
 .card-link {
   text-decoration: none;
   color: inherit;
   flex: 1 1 0;
-  transition: flex 0.4s ease-in-out;
+  transition: flex 0.2s ease-in-out;
+  will-change: flex, transform;
+  overflow: visible;
 }
 
 .card-link.expanded {
@@ -173,7 +177,7 @@ html, body {
   cursor: pointer;
   width: 100%;
   height: 256px;
-  transition: height 0.4s ease-in-out;
+  transition: height 0.2s ease-in-out;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -410,6 +414,7 @@ html, body {
 @media (max-width: 1200px) {
   .projects-grid {
     height: 370px;
+    padding: 2rem 0 0 2rem;
   }
 
   .project-card {
@@ -439,6 +444,7 @@ html, body {
 
   .projects-grid {
     height: 350px;
+    padding: 2rem 0 0 1.5rem;
   }
 
   .project-card {
@@ -535,12 +541,34 @@ html, body {
   .resume-stack {
     width: 100%;
     height: 100%;
+    position: relative;
   }
 
   .resume-layer {
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .resume-card-background {
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
+    box-shadow: 0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15),
+                0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .resume-card-background .card-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 }
 
@@ -647,12 +675,34 @@ html, body {
   .resume-stack {
     width: 100%;
     height: 100%;
+    position: relative;
   }
 
   .resume-layer {
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .resume-card-background {
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
+    box-shadow: 0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15),
+                0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .resume-card-background .card-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 }
 
@@ -660,6 +710,88 @@ html, body {
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+.expandable-card-stack-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.expandable-card-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 256px;
+  overflow: visible;
+}
+
+.expandable-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 195px;
+  height: 100%;
+  pointer-events: auto;
+  transform-origin: top right;
+}
+
+.expandable-card-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  box-shadow: 0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15),
+              0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+  padding: 33px 20px;
+}
+
+.expandable-card-stack:hover .expandable-card-inner {
+  box-shadow: 0 8px 16px 4px rgba(0, 0, 0, 0.2),
+              0 2px 6px 0 rgba(0, 0, 0, 0.35);
+}
+
+.expandable-card:hover .expandable-card-inner {
+  box-shadow: 0 12px 24px 6px rgba(0, 0, 0, 0.25),
+              0 4px 8px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+.expandable-card-text {
+  color: #9FC3C5;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 55.313px;
+  text-align: left;
+  word-break: break-word;
+  width: 147px;
+}
+
+@media (max-width: 768px) {
+  .expandable-card-stack {
+    pointer-events: none;
+  }
+
+  .expandable-card {
+    pointer-events: auto;
+    width: 280px;
+  }
+
+  .expandable-card-text {
+    font-size: clamp(3rem, 8vw, 4rem);
+    width: auto;
+    max-width: 200px;
+  }
+
+  .expandable-card-inner {
+    padding: 25px 15px;
+  }
 }
 
 .stacked-card {
@@ -679,4 +811,136 @@ html, body {
               0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30);
   position: relative;
   overflow: hidden;
+}
+
+.case-container {
+  min-height: 100vh;
+  background: #F2EEEC;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+.case-study {
+  width: 100%;
+  max-width: 900px;
+}
+
+.case-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 3rem;
+}
+
+.back-link {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+  width: fit-content;
+}
+
+.back-link:hover {
+  color: #666;
+}
+
+.case-title {
+  font-family: 'Work Sans', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #000;
+  margin: 0;
+}
+
+.case-hero {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.case-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.case-introduction {
+  font-family: 'Work Sans', sans-serif;
+  font-size: clamp(1rem, 1.25vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: #000;
+  margin: 0;
+}
+
+.case-body-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 3rem 0;
+}
+
+.case-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.case-section-title {
+  font-family: 'Work Sans', sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: #000;
+  margin: 0;
+}
+
+.case-paragraph {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #000;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .case-container {
+    padding: 1.5rem;
+  }
+
+  .case-header {
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .case-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  .case-introduction {
+    font-size: 1rem;
+  }
+
+  .case-body-content {
+    gap: 3rem;
+    padding: 2rem 0;
+  }
+
+  .case-section {
+    gap: 1rem;
+  }
+
+  .case-section-title {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
 }
