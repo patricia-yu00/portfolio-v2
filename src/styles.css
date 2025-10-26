@@ -709,6 +709,75 @@ html, body {
   height: 100%;
 }
 
+.expandable-card-stack-wrapper {
+  position: relative;
+}
+
+.expandable-card-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 256px;
+}
+
+.expandable-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.expandable-card-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  box-shadow: 0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15),
+              0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.expandable-card-stack:hover .expandable-card-inner {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.expandable-card:hover .expandable-card-inner {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.expandable-card-text {
+  color: #9FC3C5;
+  font-family: 'Work Sans', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  padding: 1.5rem;
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  .expandable-card-stack {
+    pointer-events: none;
+  }
+
+  .expandable-card {
+    pointer-events: auto;
+  }
+
+  .expandable-card-text {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+}
+
 .stacked-card {
   position: absolute;
   width: 100%;
