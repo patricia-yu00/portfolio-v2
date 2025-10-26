@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
-export default function ExpandableCardStack({ cards, isExpanded, isCompressed }) {
+export default function ExpandableCardStack({ cards, isExpanded, isCompressed, onHover, onHoverEnd }) {
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null)
   const [isStackHovered, setIsStackHovered] = useState(false)
 
