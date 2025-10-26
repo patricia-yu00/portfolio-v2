@@ -12,42 +12,45 @@ export default function ProjectCard({
   const cardVariants = {
     compressed: {
       flex: 0.908,
-      transition: { duration: 0.4, ease: 'easeInOut' }
+      transition: { duration: 0.2, ease: 'easeInOut' }
     },
     expanded: {
       flex: 1.451,
-      transition: { duration: 0.4, ease: 'easeInOut' }
+      transition: { duration: 0.2, ease: 'easeInOut' }
     },
     normal: {
       flex: 1,
-      transition: { duration: 0.4, ease: 'easeInOut' }
+      transition: { duration: 0.2, ease: 'easeInOut' }
     }
   }
 
   const projectCardVariants = {
     compressed: {
       height: 256,
-      transition: { duration: 0.4, ease: 'easeInOut' }
+      transition: { duration: 0.2, ease: 'easeInOut' }
     },
     expanded: {
       height: 381,
-      transition: { duration: 0.4, ease: 'easeInOut' }
+      transition: { duration: 0.2, ease: 'easeInOut' }
     },
     normal: {
       height: 256,
-      transition: { duration: 0.4, ease: 'easeInOut' }
+      transition: { duration: 0.2, ease: 'easeInOut' }
     }
   }
 
   const shadowVariants = {
     compressed: {
-      boxShadow: '0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15), 0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30)'
+      boxShadow: '0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15), 0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30)',
+      transition: { duration: 0.2, ease: 'easeInOut' }
     },
     expanded: {
-      boxShadow: '0 8px 16px 4px rgba(0, 0, 0, 0.2), 0 2px 6px 0 rgba(0, 0, 0, 0.35)'
+      boxShadow: '0 8px 16px 4px rgba(0, 0, 0, 0.2), 0 2px 6px 0 rgba(0, 0, 0, 0.35)',
+      transition: { duration: 0.2, ease: 'easeInOut' }
     },
     normal: {
-      boxShadow: '0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15), 0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30)'
+      boxShadow: '0 1.875px 3.75px 1.406px rgba(0, 0, 0, 0.15), 0 0.469px 1.406px 0 rgba(0, 0, 0, 0.30)',
+      transition: { duration: 0.2, ease: 'easeInOut' }
     }
   }
 
