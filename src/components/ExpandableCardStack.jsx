@@ -73,6 +73,8 @@ export default function ExpandableCardStack({ cards, isExpanded, isCompressed, o
       className="card-link expandable-card-stack-wrapper"
       variants={containerVariants}
       animate={state}
+      onMouseEnter={onHover}
+      onMouseLeave={onHoverEnd}
     >
       <motion.div
         className="project-card"
