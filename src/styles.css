@@ -711,6 +711,7 @@ html, body {
 
 .expandable-card-stack-wrapper {
   position: relative;
+  overflow: visible;
 }
 
 .expandable-card-stack {
@@ -718,14 +719,16 @@ html, body {
   width: 100%;
   height: 100%;
   min-height: 256px;
+  overflow: visible;
 }
 
 .expandable-card {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 195px;
   height: 100%;
+  pointer-events: auto;
 }
 
 .expandable-card-inner {
@@ -741,27 +744,29 @@ html, body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.2s ease;
+  padding: 33px 20px;
 }
 
 .expandable-card-stack:hover .expandable-card-inner {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 16px 4px rgba(0, 0, 0, 0.2),
+              0 2px 6px 0 rgba(0, 0, 0, 0.35);
 }
 
 .expandable-card:hover .expandable-card-inner {
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 12px 24px 6px rgba(0, 0, 0, 0.25),
+              0 4px 8px 0 rgba(0, 0, 0, 0.4) !important;
 }
 
 .expandable-card-text {
   color: #9FC3C5;
   font-family: 'Work Sans', sans-serif;
-  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-size: 80px;
   font-weight: 700;
-  line-height: 1.2;
-  text-align: center;
-  padding: 1.5rem;
+  line-height: 55.313px;
+  text-align: left;
   word-break: break-word;
+  width: 147px;
 }
 
 @media (max-width: 768px) {
