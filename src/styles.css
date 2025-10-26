@@ -444,6 +444,7 @@ html, body {
 
   .projects-grid {
     height: 350px;
+    padding: 2rem 1.5rem 0 0;
   }
 
   .project-card {
