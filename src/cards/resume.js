@@ -1,18 +1,23 @@
+import resumeImg from './cards-cover/resume.png'
+import aboutmeImg from './cards-cover/aboutme.png'
+import emailImg from './cards-cover/email.png'
+
 const resumeCard = {
   slug: 'resume',
   size: 'sm',
   background: 'transparent',
+  customClass: 'card-stack',
   content: `
-    <div class="resume-stack">
-      <div class="resume-layer layer-3" style="background: #20437B;">
-        <span class="resume-text">Email</span>
-      </div>
-      <div class="resume-layer layer-2" style="background: #20577B;">
-        <span class="resume-text">About Me</span>
-      </div>
-      <div class="resume-layer layer-1" style="background: #20767B;">
-        <span class="resume-text">Resume</span>
-      </div>
+    <div class="stack-container">
+      <a href="#/resume" class="stack-layer layer-1" style="background-image: url(${resumeImg});">
+        <span class="stack-label">Resume</span>
+      </a>
+      <a href="#/about" class="stack-layer layer-2" style="background-image: url(${aboutmeImg});">
+        <span class="stack-label">About Me</span>
+      </a>
+      <a href="#/email" class="stack-layer layer-3" style="background-image: url(${emailImg});">
+        <span class="stack-label">Email</span>
+      </a>
     </div>
   `
 }

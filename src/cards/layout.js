@@ -1,7 +1,7 @@
 export function renderCard(card) {
-  const { slug, size = 'sm', background, content } = card
+  const { slug, size = 'sm', background, content, customClass = '' } = card
   return `
-    <div class="project-card" data-card="${slug}" data-size="${size}">
+    <div class="project-card ${customClass}" data-card="${slug}" data-size="${size}">
       <div class="card-inner">
         <div class="card-background" style="background: ${background};">
           ${content || ''}

@@ -11,5 +11,5 @@ export const cards = [
   { ...dashboard, link: '#/case/adobe' },
   { ...carmo, link: '#/case/carmo' },
   { ...graphs, link: '#/case/graphs' },
-  { ...resume, link: '#/case/carmo' }
+  { ...resume, link: null }
 ]
