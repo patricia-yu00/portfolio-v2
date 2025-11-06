@@ -313,6 +313,10 @@ html, body {
   display: block;
 }
 
+.card-link:has(.card-stack) {
+  margin-left: 0.5rem;
+}
+
 .card-stack .card-background {
   background: transparent;
   overflow: visible;
