@@ -7,9 +7,9 @@ import resume from './resume.js'
 
 export const cards = [
   { ...adobe, link: '#/case/adobe' },
-  { ...pattern, link: '#/case/pattern' },
+  { ...graphs, link: '#/case/graphs' },
   { ...dashboard, link: '#/case/adobe' },
   { ...carmo, link: '#/case/carmo' },
-  { ...graphs, link: '#/case/graphs' },
+  { ...pattern, link: '#/case/pattern' },
   { ...resume, link: null }
 ]
