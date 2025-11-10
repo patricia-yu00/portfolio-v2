@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 export default function ExpandableCardStack({ cards, isExpanded, isCompressed, onHover, onHoverEnd }) {
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null)
   const [isStackHovered, setIsStackHovered] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false)
 
   const getCardTransform = (index, isHovered) => {
     if (!isStackHovered) {
@@ -19,13 +20,14 @@ export default function ExpandableCardStack({ cards, isExpanded, isCompressed, o
     }
 
     // Expanded state - diagonal expansion up and to the left
-    const diagonalOffset = 60
-    const baseScale = 1 + (index * 0.1)
-    const scale = isHovered ? baseScale * 1.05 : baseScale
+    const diagonalOffset = 100
+    const scale = isHovered ? 1.05 : 1
+    // Offset to keep bottom card fixed (compensate for container height change from 256 to 381)
+    const heightDiff = 125
 
     return {
       x: -index * diagonalOffset,
-      y: -index * diagonalOffset,
+      y: heightDiff - (index * diagonalOffset),
       rotate: 0,
       scale: scale,
       zIndex: isHovered ? 110 : 103 - index
@@ -81,10 +83,16 @@ export default function ExpandableCardStack({ cards, isExpanded, isCompressed, o
       >
         <div
           className="expandable-card-stack"
-          onMouseEnter={() => setIsStackHovered(true)}
+          onMouseEnter={() => {
+            setIsStackHovered(true)
+            setIsAnimating(true)
+            setTimeout(() => setIsAnimating(false), 500)
+          }}
           onMouseLeave={() => {
             setIsStackHovered(false)
             setHoveredCardIndex(null)
+            setIsAnimating(true)
+            setTimeout(() => setIsAnimating(false), 500)
           }}
         >
           {cards.map((card, index) => {
@@ -109,10 +117,11 @@ export default function ExpandableCardStack({ cards, isExpanded, isCompressed, o
                   duration: 0.5,
                   ease: 'easeOut'
                 }}
-                onMouseEnter={() => setHoveredCardIndex(index)}
-                onMouseLeave={() => setHoveredCardIndex(null)}
+                onMouseEnter={() => !isAnimating && setHoveredCardIndex(index)}
+                onMouseLeave={() => !isAnimating && setHoveredCardIndex(null)}
                 style={{
-                  cursor: isStackHovered ? 'pointer' : 'default'
+                  cursor: isStackHovered ? 'pointer' : 'default',
+                  pointerEvents: isAnimating ? 'none' : 'auto'
                 }}
               >
                 <CardWrapper
