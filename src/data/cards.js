@@ -1,11 +1,18 @@
-import adobeImg from '../cards/cards-cover/adobe.png'
-import moodyImg from '../cards/cards-cover/moodys.png'
-import esaImg from '../cards/cards-cover/esa.png'
-import carmoImg from '../cards/cards-cover/carmo.png'
-import researchImg from '../cards/cards-cover/research.png'
-import resumeImg from '../cards/cards-cover/resume.png'
-import aboutmeImg from '../cards/cards-cover/aboutme.png'
-import emailImg from '../cards/cards-cover/email.png'
+import adobeImg from '../assets/homepage/cards/adobe.png'
+import moodyImg from '../assets/homepage/cards/moodys.png'
+import esaImg from '../assets/homepage/cards/esa.png'
+import carmoImg from '../assets/homepage/cards/carmo.png'
+import researchImg from '../assets/homepage/cards/research.png'
+import resumeImg from '../assets/homepage/cards/resume.png'
+import aboutmeImg from '../assets/homepage/cards/aboutme.png'
+import emailImg from '../assets/homepage/cards/email.png'
+
+// Logo imports
+import adobeLogo from '../assets/homepage/logos/adobe.png'
+import moodysLogo from '../assets/homepage/logos/moodys.png'
+import verizonLogo from '../assets/homepage/logos/verizon.png'
+import penndotLogo from '../assets/homepage/logos/penndot.png'
+import googleLogo from '../assets/homepage/logos/google.png'
 
 export const cardsData = [
   {
@@ -74,31 +81,35 @@ export const cardsData = [
 ]
 
 export const heroContent = [
-  null,
+  {
+    text: 'Innovate & unify AI experiences across products',
+    image: adobeLogo,
+    alt: 'Adobe'
+  },
   {
     text: 'Enhancing AI tools to improve workflows and ',
     highlight: 'adoption in finance',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/53e0801a582dc2ca9d5bcc187c07165f688d51f6?width=140',
+    image: moodysLogo,
     alt: 'Moody\'s'
   },
   {
     text: 'Creating a more efficient order management ',
     specialText: 'experience for engineers',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/befe117fa011fa36706d8adf7da93e5248343996?width=80',
+    image: verizonLogo,
     alt: 'Verizon',
     layout: 'horizontal'
   },
   {
     text: 'Designing an inclusive autonomous vehicle car-',
     specialText: 'sharing app experience',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/480e8e6331ebaa9afe5eb428f661d04c61c06970?width=103',
+    image: penndotLogo,
     alt: 'PennDOT',
     layout: 'horizontal'
   },
   {
     text: 'Stimulating smartphone growth & understanding ',
     specialText: 'brand switching behavior',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/349402280f99b7abc5b05d16fb89e713bbe801da?width=97',
+    image: googleLogo,
     alt: 'Google',
     layout: 'horizontal'
   }
