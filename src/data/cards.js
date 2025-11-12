@@ -115,5 +115,12 @@ export const heroContent = [
     line3: 'switching behavior',
     image: googleLogo,
     alt: 'Google'
+  },
+  {
+    line1: 'Let\'s design',
+    line2: 'together!',
+    line3: ' ',
+    image: null,
+    alt: 'Contact'
   }
 ]

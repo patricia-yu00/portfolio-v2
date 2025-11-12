@@ -35,11 +35,11 @@ export default function HeroSection({ content }) {
         className="hero-heading"
       >
         <div className="hero-content-block">
-          <div>{content.line1}</div>
-          <div>{content.line2}</div>
+          <div>{content.line1 || '\u00A0'}</div>
+          <div>{content.line2 || '\u00A0'}</div>
           <div className="hero-special-text-line">
-            <span className="hero-special-text">{content.line3}</span>
-            <img src={content.image} alt={content.alt} className="hero-logo" />
+            <span className="hero-special-text">{content.line3 || '\u00A0'}</span>
+            {content.image && <img src={content.image} alt={content.alt} className="hero-logo" />}
           </div>
         </div>
       </motion.div>
