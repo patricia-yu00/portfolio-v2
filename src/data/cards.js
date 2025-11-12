@@ -62,7 +62,8 @@ export const cardsData = [
         slug: 'resume',
         label: 'Resume',
         background: '#20767B',
-        href: '/resume'
+        href: 'https://drive.google.com/file/d/1SBI4KJYt3V0-mEezWdFT6eCSkAwaUAUN/view?usp=drive_link',
+        external: true
       },
       {
         slug: 'aboutme',
@@ -74,7 +75,7 @@ export const cardsData = [
         slug: 'email',
         label: 'Email',
         background: '#20437B',
-        mailto: 'mailto:patriciayu58@yahoo.com'
+        mailto: 'mailto:patriciayu58@gmail.com'
       }
     ]
   }

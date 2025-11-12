@@ -97,10 +97,24 @@ export default function ExpandableCardStack({ cards, isExpanded, isCompressed, o
         >
           {cards.map((card, index) => {
             const transform = getCardTransform(index, hoveredCardIndex === index)
-            const CardWrapper = card.href ? Link : 'a'
-            const linkProps = card.href
-              ? { to: card.href }
-              : { href: card.mailto || '#', onClick: (e) => !card.mailto && e.preventDefault() }
+            const CardWrapper = card.href && !card.external ? Link : 'a'
+            
+            let linkProps = {}
+            if (card.href) {
+              if (card.external) {
+                linkProps = {
+                  href: card.href,
+                  target: '_blank',
+                  rel: 'noopener noreferrer'
+                }
+              } else {
+                linkProps = { to: card.href }
+              }
+            } else if (card.mailto) {
+              linkProps = { href: card.mailto }
+            } else {
+              linkProps = { href: '#', onClick: (e) => e.preventDefault() }
+            }
 
             return (
               <motion.div

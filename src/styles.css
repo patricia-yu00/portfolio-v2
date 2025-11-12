@@ -57,22 +57,16 @@ html, body {
   border-radius: 80px;
   background: #87C9CD;
   border: none;
-  cursor: pointer;
-  transition: background 0.3s ease;
+  cursor: default;
   padding: 0;
   position: relative;
   overflow: hidden;
-}
-
-.profile-pill:hover {
-  background: #6BAFB4;
 }
 
 .profile-image {
   width: clamp(70px, 8vw, 116px);
   height: clamp(68px, 7.8vw, 113px);
   object-fit: cover;
-  mix-blend-mode: multiply;
 }
 
 .hero-logo {

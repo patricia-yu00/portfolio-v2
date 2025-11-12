@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import profileImage from '../assets/homepage/logos/homepageme.png'
 
 export default function HeroSection({ content }) {
   const fadeVariants = {
@@ -13,7 +14,7 @@ export default function HeroSection({ content }) {
         Hey there! I'm Patricia
         <button className="profile-pill" aria-label="View profile">
           <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/2489a895dad2614ef19df70de9ef72204a4b9b5b?width=232"
+            src={profileImage}
             alt="Patricia profile"
             className="profile-image"
           />
