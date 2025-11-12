@@ -34,23 +34,14 @@ export default function HeroSection({ content }) {
         exit="exit"
         className="hero-heading"
       >
-        {content.layout === 'horizontal' && content.specialText ? (
-          <div className="hero-content-block">
-            <div>{content.text}</div>
-            <div className="hero-special-text-line">
-              <span className="hero-special-text">{content.specialText}</span>
-              <img src={content.image} alt={content.alt} className="hero-logo" />
-            </div>
-          </div>
-        ) : (
-          <>
-            {content.text}
-            {content.highlight && (
-              <div className="hero-highlight">{content.highlight}</div>
-            )}
+        <div className="hero-content-block">
+          <div>{content.line1}</div>
+          <div>{content.line2}</div>
+          <div className="hero-special-text-line">
+            <span className="hero-special-text">{content.line3}</span>
             <img src={content.image} alt={content.alt} className="hero-logo" />
-          </>
-        )}
+          </div>
+        </div>
       </motion.div>
     </AnimatePresence>
   )

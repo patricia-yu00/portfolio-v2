@@ -103,7 +103,8 @@ html, body {
 .hero-content-block {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 0;
+  line-height: 1.05;
 }
 
 .hero-special-text-line {

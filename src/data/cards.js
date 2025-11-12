@@ -82,35 +82,38 @@ export const cardsData = [
 
 export const heroContent = [
   {
-    text: 'Innovate & unify AI experiences across products',
+    line1: 'Innovate & unify AI',
+    line2: 'experiences across',
+    line3: 'products',
     image: adobeLogo,
     alt: 'Adobe'
   },
   {
-    text: 'Enhancing AI tools to improve workflows and ',
-    highlight: 'adoption in finance',
+    line1: 'Enhancing AI tools to',
+    line2: 'improve workflows and',
+    line3: 'adoption in finance',
     image: moodysLogo,
     alt: 'Moody\'s'
   },
   {
-    text: 'Creating a more efficient order management ',
-    specialText: 'experience for engineers',
+    line1: 'Creating a more efficient',
+    line2: 'order management experience',
+    line3: 'for engineers',
     image: verizonLogo,
-    alt: 'Verizon',
-    layout: 'horizontal'
+    alt: 'Verizon'
   },
   {
-    text: 'Designing an inclusive autonomous vehicle car-',
-    specialText: 'sharing app experience',
+    line1: 'Designing an inclusive',
+    line2: 'autonomous vehicle car-',
+    line3: 'sharing app experience',
     image: penndotLogo,
-    alt: 'PennDOT',
-    layout: 'horizontal'
+    alt: 'PennDOT'
   },
   {
-    text: 'Stimulating smartphone growth & understanding ',
-    specialText: 'brand switching behavior',
+    line1: 'Stimulating smartphone',
+    line2: 'growth & understanding key',
+    line3: 'switching behavior',
     image: googleLogo,
-    alt: 'Google',
-    layout: 'horizontal'
+    alt: 'Google'
   }
 ]
