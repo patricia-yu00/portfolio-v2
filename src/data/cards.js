@@ -23,7 +23,7 @@ export const cardsData = [
     alt: 'Adobe project'
   },
   {
-    slug: 'pattern',
+    slug: 'moodys',
     size: 'sm',
     background: '#1A2267',
     image: moodyImg,
@@ -98,8 +98,8 @@ export const heroContent = [
   },
   {
     line1: 'Creating a more efficient',
-    line2: 'order management experience',
-    line3: 'for engineers',
+    line2: 'order management',
+    line3: 'experience for engineers',
     image: verizonLogo,
     alt: 'Verizon'
   },
