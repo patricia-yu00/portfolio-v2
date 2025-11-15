@@ -1,5 +1,9 @@
 // Moody's case study images
 import moodysHero from '../assets/casestudies/moodys/hero.png'
+import legacyChat from '../assets/casestudies/moodys/legacy-chat.png'
+import legacyChatThread from '../assets/casestudies/moodys/legacychatthread.png'
+import newhome from '../assets/casestudies/moodys/newhome.png'
+import newconvo from '../assets/casestudies/moodys/newconvo.png'
 
 export const caseStudiesData = {
   adobe: {
@@ -179,40 +183,56 @@ export const caseStudiesData = {
       {
         type: 'two-column',
         left: {
-          type: 'text',
-          title: 'Legacy Chat Experience',
-          content: 'Inconsistent design, confusing interactions, usability issues'
+          type: 'image',
+          title: 'Legacy Siloed Homepage',
+          subtitle: 'Complicated navigation, information overload, lack of hierarchy',
+          image: legacyChat
         },
         right: {
-          type: 'text',
-          title: 'Enhanced Chat Thread Experience',
-          content: 'Ability to navigate chat history, consistent mental models and design system'
+          type: 'video',
+          title: 'Enhanced Unified Homepage',
+          subtitle: 'New features to enhance ease of use, improved navigation, clarity in design',
+          src: 'https://youtu.be/CqGcnd3ZB-A'
         }
       },
       {
+        type: 'text',
+        title: 'Homepage Feature Callouts'
+      },
+      {
         type: 'image',
-        image: 'https://static.wixstatic.com/media/d27b3d_placeholder.png',
-        caption: 'Enhanced chat interface with thread navigation',
-        layout: 'full-width'
+        images: [
+          newhome,
+          newconvo
+        ],
+        layout: 'side-by-side'
       },
       {
         type: 'two-column',
         left: {
-          type: 'text',
-          title: 'Legacy Files Management Experience',
-          content: 'Overload of functionality, complicated navigation'
+          type: 'image',
+          title: 'Legacy Chat Experience',
+          subtitle: 'Inconsistent design, confusing interactions, usability issues',
+          image: legacyChatThread
         },
         right: {
-          type: 'text',
-          title: 'Enhanced Files Management Experience',
-          content: 'Consistent notification design, guided interactions'
+          type: 'video',
+          title: 'Enhanced Chat Thread Experience',
+          subtitle: 'Ability to navigate chat history, consistent mental models and design system',
+          src: 'https://youtu.be/KLOCvXLA--8'
         }
       },
       {
+        type: 'text',
+        title: 'Chat Thread Feature Callouts'
+      },
+      {
         type: 'image',
-        image: 'https://static.wixstatic.com/media/d27b3d_placeholder2.png',
-        caption: 'Streamlined file management with real-time status tracking',
-        layout: 'full-width'
+        images: [
+          'chat-image1.png',
+          'chat-image2.png'
+        ],
+        layout: 'side-by-side'
       },
       {
         type: 'two-column',

@@ -1237,6 +1237,30 @@ html, body {
   background: #000;
 }
 
+.case-video-youtube {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Keep titles on one line in two-column layouts */
+.two-column-section .case-section-title {
+  white-space: nowrap;
+}
+
+/* Match heights in two-column layout */
+.two-column-section .case-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.two-column-section .case-video-youtube {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
 /* Text Section Alignment */
 .text-section.text-center {
   text-align: center;

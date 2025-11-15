@@ -4,7 +4,9 @@ export default function ImageSection({
   image, 
   images, 
   alt, 
-  caption, 
+  caption,
+  title,
+  subtitle,
   layout = 'standard' // 'standard', 'full-width', 'full-bleed', 'side-by-side', 'grid'
 }) {
   const itemVariants = {
@@ -23,7 +25,9 @@ export default function ImageSection({
         className={`case-section image-section image-${layout}`}
         variants={itemVariants}
       >
-        <img src={image} alt={alt || caption || 'Case study image'} className="case-image" />
+        {title && <h3 className="case-section-title">{title}</h3>}
+        {subtitle && <p className="case-section-subtitle">{subtitle}</p>}
+        <img src={image} alt={alt || caption || title || 'Case study image'} className="case-image" />
         {caption && <figcaption className="case-caption">{caption}</figcaption>}
       </motion.figure>
     )

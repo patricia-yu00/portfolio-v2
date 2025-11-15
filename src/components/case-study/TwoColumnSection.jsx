@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import TextSection from './TextSection'
 import ImageSection from './ImageSection'
+import VideoSection from './VideoSection'
 
 export default function TwoColumnSection({ left, right, gap = 'medium' }) {
   const itemVariants = {
@@ -20,6 +21,8 @@ export default function TwoColumnSection({ left, right, gap = 'medium' }) {
         return <TextSection {...column} />
       case 'image':
         return <ImageSection {...column} />
+      case 'video':
+        return <VideoSection {...column} />
       default:
         return <div>{column.content}</div>
     }
